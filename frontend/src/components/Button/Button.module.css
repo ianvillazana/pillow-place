@@ -1,0 +1,31 @@
+.button {
+  background-color: var(--main);
+  border: 1px solid transparent;
+  border-radius: 4px;
+  color: #fff;
+  cursor: pointer;
+  display: inline-block;
+  font-size: 1.3rem;
+  font-weight: 400;
+  margin: 0;
+  padding: 0.8rem 1rem;
+  text-align: center;
+  text-decoration: none;
+  user-select: none;
+  vertical-align: middle;
+  white-space: nowrap;
+}
+
+.button:focus {
+  outline: none;
+}
+
+.button:hover,
+.button:active {
+  background-color: #25b4ba;
+}
+
+.buttonLarge {
+  font-size: 1.6rem;
+  padding: 1.2rem 2rem;
+}

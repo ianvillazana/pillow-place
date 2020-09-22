@@ -1,0 +1,120 @@
+.home {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+}
+
+.landing {
+  align-items: center;
+  background-image: linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.2)), 
+  url('../../images/homepage/landing-bg.jpg');
+  background-position: left;
+  background-repeat: no-repeat;
+  background-size: cover;
+  display: flex;
+  height: 90vh;
+  justify-content: center;
+  width: 100%;
+}
+
+.landingContent {
+  align-items: center;
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  line-height: 1.4;
+  text-align: center;
+}
+
+.landingContent h1 {
+  font-size: 4rem;
+  font-weight: 400;
+  letter-spacing: 1px;
+  margin-bottom: 1.5rem;
+}
+
+.landingContent h2 {
+  font-size: 2.3rem;
+  font-weight: 400;
+  letter-spacing: 0.5px;
+  margin-bottom: 3rem;
+}
+
+.returnPolicy {
+  align-items: center;
+  background-color: #fff;
+  display: flex;
+  flex-direction: column;
+  height: 22rem;
+  justify-content: center;
+  padding: 9rem 0;
+  text-align: center;
+  width: 100%;
+}
+
+h4 {
+  font-size: 1.6rem;
+  font-weight: bold;
+  margin-bottom: 3rem;
+  opacity: 0.85;
+  padding-bottom: 1.5rem;
+  position: relative;
+}
+
+h4:after {
+  background: #000;
+  bottom: 0;
+  content: "";
+  height: 3px;
+  left: 0;
+  margin: auto;
+  opacity: 0.3;
+  position: absolute;
+  right: 0;
+  width: 3rem;
+}
+
+.returnPolicy p {
+  font-size: 1.8rem;
+  margin: 0 1.5rem 2rem 1.5rem;
+  max-width: 100rem;
+}
+
+.returnPolicy a {
+  color: #000;
+  cursor: pointer;
+  font-weight: bold;
+  text-decoration: underline;
+}
+
+.featured {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-image: url('../../images/homepage/featured-bg.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 55rem;
+  width: 100%;
+}
+
+.featuredButton {
+  background-color: white;
+  cursor: pointer;
+  padding: 0.8rem;
+}
+
+.featuredButton:hover {
+  color: var(--main);
+}
+
+.featuredButton p {
+  background-color: white;
+  border: 1px solid #000;
+  font-size: 2rem;
+  padding: 1.2rem;
+}
+
+.newProducts {
+  padding: 9rem 0 9rem 0;
+}
