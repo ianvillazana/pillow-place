@@ -22,7 +22,7 @@ export default function HomePage() {
           you purchased from us online for up to 14 days from the date of 
           receiving your order. You just have to pay for return shipping fees.
         </p>
-        <a href="#">CLICK HERE FOR THE FULL DETAILS</a>
+        <a href="/">CLICK HERE FOR THE FULL DETAILS</a>
       </section>
       <section className={styles.featured}>
         <div className={styles.featuredButton}>
