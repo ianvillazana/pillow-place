@@ -22,7 +22,8 @@
 
 .button:hover,
 .button:active {
-  background-color: #25b4ba;
+  background-color: #37acb0;
+  color: #ddd;
 }
 
 .buttonLarge {

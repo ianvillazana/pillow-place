@@ -1,11 +1,6 @@
 :root {
   /* COLORS */
   --main: #14abb1;
-  
-  /* HORIZONTAL GAP */
-  --gap-lg: 4rem;
-  --gap-md: 3.2rem;
-  --gap-sm: 2.4rem;
 }
 
 *,
