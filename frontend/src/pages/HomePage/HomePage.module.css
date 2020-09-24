@@ -26,20 +26,6 @@
   text-align: center;
 }
 
-h1 {
-  font-size: 4rem;
-  font-weight: 400;
-  letter-spacing: 1px;
-  margin-bottom: 1.5rem;
-}
-
-h2 {
-  font-size: 2.3rem;
-  font-weight: 400;
-  letter-spacing: 0.5px;
-  margin-bottom: 3rem;
-}
-
 .returnPolicy {
   align-items: center;
   background-color: #fff;
@@ -50,29 +36,6 @@ h2 {
   padding: 9rem 0;
   text-align: center;
   width: 100%;
-}
-
-h4 {
-  font-size: 1.5rem;
-  font-weight: bold;
-  letter-spacing: 1px;
-  margin-bottom: 3rem;
-  opacity: 0.85;
-  padding-bottom: 1.5rem;
-  position: relative;
-}
-
-h4:after {
-  background: #000;
-  bottom: 0;
-  content: "";
-  height: 3px;
-  left: 0;
-  margin: auto;
-  opacity: 0.3;
-  position: absolute;
-  right: 0;
-  width: 3rem;
 }
 
 .returnPolicy p {
@@ -123,7 +86,7 @@ h4:after {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  padding: 9rem 0;
+  padding: 9rem 0 20rem 0;
   width: 100%;
 }
 
@@ -144,14 +107,6 @@ h4:after {
 
 /* 400px */
 @media (max-width: 25em) {
-  h1 {
-    font-size: 3.6rem;
-  }
-  
-  h2 {
-    font-size: 2rem;
-  }
-
   .returnPolicy p {
     font-size: 1.5rem;
     margin: 0 1rem 2rem 1rem;
