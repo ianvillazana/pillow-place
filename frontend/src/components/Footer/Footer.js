@@ -8,7 +8,7 @@ import styles from './Footer.module.css';
 export default function Footer() {
   return (
     <footer className={styles.footer}>
-      <div className={styles.grid}>
+      <div className={`${styles.grid} max-width`}>
         <div className={styles.gridItem}>
           <h5>SUPPORT</h5>
           <ul>

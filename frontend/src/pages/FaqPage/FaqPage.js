@@ -6,7 +6,7 @@ export default function FaqPage() {
   return (
     <div className="page">
       <h2>FREQUENTLY ASKED QUESTIONS</h2>
-      <div className={styles.questions}>
+      <div className="max-width">
         <p className={styles.question}>
           How do I create an online account?
         </p>

@@ -58,6 +58,11 @@ h6 {
   padding: 9rem 1.5rem;
 }
 
+.max-width {
+  max-width: 120rem;
+  width: 100%;
+}
+
 /* 400px */
 @media (max-width: 25em) {
   h1 {

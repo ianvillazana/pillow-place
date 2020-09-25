@@ -31,7 +31,7 @@ export default function HomePage() {
       </section>
       <section className={styles.popular}>
         <h4>POPULAR PICKS</h4>
-        <div className={styles.products}>
+        <div className={`${styles.products} max-width`}>
           <Product item={collection.Aquagel} />
           <Product item={collection.BioSoy} />
           <Product item={collection.ComfortContour} />
