@@ -1,0 +1,15 @@
+.questions {
+  display: flex;
+  flex-direction: column;
+  max-width: 120rem;
+  width: 100%;
+}
+
+.question {
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+}
+
+.answer {
+  margin-bottom: 3rem;
+}

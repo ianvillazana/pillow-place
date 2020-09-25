@@ -50,12 +50,26 @@ h6 {
   text-transform: uppercase;
 }
 
+.page {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 9rem 1.5rem;
+}
+
 /* 400px */
 @media (max-width: 25em) {
   h1 {
     font-size: 3.6rem;
   }
+
   h2 {
     font-size: 2rem;
+  }
+
+  .page {
+    font-size: 1.4rem;
+    padding: 9rem 1rem;
   }
 }
