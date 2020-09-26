@@ -18,18 +18,18 @@
   flex-direction: column;
 }
 
-li {
+.gridItem li {
   cursor: pointer;
   font-size: 1.2rem;
   list-style: none;
   margin-top: 1.5rem;
 }
 
-li:not(:last-child) {
+.gridItem li:not(:last-child) {
   margin-bottom: 1.5rem;
 }
 
-li:hover {
+.gridItem li:hover {
   text-decoration: underline;
 }
 
