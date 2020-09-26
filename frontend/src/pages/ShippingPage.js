@@ -48,14 +48,14 @@ export default function ShippingPage() {
             they will vary from country to country and we cannot guarantee 
             what they will be in advance.
           </li>
-          </ul>
-          <p>
-            *Please note that these are estimates and aren't guaranteed, we 
-            will not be able to reimburse expedited shipping costs for packages 
-            that miss the estimated delivery date, nor do we refund shipping 
-            costs for returned items. If you have any questions about shipping 
+        </ul>
+        <p>
+          *Please note that these are estimates and aren't guaranteed, we
+          will not be able to reimburse expedited shipping costs for packages
+          that miss the estimated delivery date, nor do we refund shipping
+          costs for returned items. If you have any questions about shipping
             or delivery, please <u>contact us.</u>
-          </p>
+        </p>
       </div>
     </div>
   );

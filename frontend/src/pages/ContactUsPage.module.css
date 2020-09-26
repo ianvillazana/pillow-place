@@ -1,0 +1,11 @@
+.form {
+  display: flex;
+  flex-direction: column;
+  max-width: 60rem;
+  width: 100%;
+}
+
+.submit {
+  align-self: center;
+  width: 6rem;
+}

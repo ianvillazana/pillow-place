@@ -7,7 +7,7 @@
 .landing {
   align-items: center;
   background-image: linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.2)), 
-  url('../../images/homepage/landing-bg.jpg');
+  url('../images/homepage/landing-bg.jpg');
   background-position: left;
   background-repeat: no-repeat;
   background-size: cover;
@@ -55,7 +55,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  background-image: url('../../images/homepage/featured-bg.jpg');
+  background-image: url('../images/homepage/featured-bg.jpg');
   background-position: top right;
   background-repeat: no-repeat;
   background-size: cover;

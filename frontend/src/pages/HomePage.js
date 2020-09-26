@@ -1,8 +1,8 @@
 import React from 'react';
 
-import Button from '../../components/Button/Button';
-import Product from '../../components/Product/Product';
-import collection from '../../utils/collection';
+import Button from '../components/Button/Button';
+import Product from '../components/Product/Product';
+import collection from '../utils/collection';
 import styles from './HomePage.module.css';
 
 export default function HomePage() {
