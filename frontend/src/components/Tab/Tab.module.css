@@ -1,0 +1,36 @@
+.tab {
+  align-items: center;
+  background-color: #fff;
+  color: #393939;
+  cursor: pointer;
+  display: flex;
+  font-size: 1.6rem;
+  font-weight: bold;
+  height: inherit;
+  justify-content: center;
+  text-align: center;
+  width: inherit;
+}
+
+.tab:hover {
+  color: #000;
+}
+
+.content,
+.content a {
+  color: currentColor;
+  border-bottom: 2px solid transparent;
+  border-top: 2px solid transparent;
+  text-decoration: none;
+  text-transform: uppercase;
+  width: 75%;
+}
+
+.selected,
+.selected:hover {
+  color: var(--main);
+}
+
+.selected .content {
+  border-bottom: 2px solid var(--main);
+}

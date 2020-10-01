@@ -1,0 +1,16 @@
+.shop {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+}
+
+.banner {
+  height: auto;
+  margin-bottom: -0.7rem;
+  width: 100%;
+}
+
+.tabs {
+  height: 5rem;
+  width: 100%;
+}
