@@ -8,9 +8,9 @@
 }
 
 .tab {
-  width: 7rem;
-  height: 100%;
   border-right: 2px solid #ccc;
+  height: 100%;
+  width: 7rem;
 }
 
 .tab:first-child {

@@ -8,7 +8,7 @@
   font-weight: bold;
   height: inherit;
   justify-content: center;
-  text-align: center;
+  text-transform: uppercase;
   width: inherit;
 }
 
@@ -16,14 +16,16 @@
   color: #000;
 }
 
-.content,
-.content a {
+.tab a {
+  align-items: center;
   color: currentColor;
   border-bottom: 2px solid transparent;
   border-top: 2px solid transparent;
+  display: flex;
+  height: 100%;
+  justify-content: center;
   text-decoration: none;
-  text-transform: uppercase;
-  width: 75%;
+  width: 100%;
 }
 
 .selected,
@@ -31,6 +33,8 @@
   color: var(--main);
 }
 
-.selected .content {
+.selected a {
   border-bottom: 2px solid var(--main);
+  height: 50%;
+  width: 75%;
 }

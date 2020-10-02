@@ -1,21 +1,23 @@
-import React, { useState, Children } from 'react';
+import React from 'react';
 
 import Tab from '../Tab/Tab';
 import styles from './TabGroup.module.css';
 
-export default function TabGroup(props) {
-  const { children, defaultValue } = props;
+const tabs = {
+  "SIDE": "/shop/side-sleeper",
+  "BACK": "/shop/back-sleeper",
+  "MIXED": "/shop/mixed-sleeper",
+  "ALL": "/shop/all"
+};
 
-  const [value, setValue] = useState(defaultValue ? defaultValue : 0);
+export default function TabGroup(props) {
+  const { tabValue } = props;
 
   return (
     <div className={styles.tabGroup}>
-      {Children.map(children, (child, index) => (
-        <div 
-          className={styles.tab} 
-          onClick={() => setValue(index)}
-        >
-          <Tab selected={index === value}>{child}</Tab>
+      {Object.keys(tabs).map((tab, index) => (
+        <div className={styles.tab}>
+          <Tab selected={index === tabValue} route={tabs[tab]}>{tab}</Tab>
         </div>
       ))}
     </div>
