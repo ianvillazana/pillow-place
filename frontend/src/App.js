@@ -1,7 +1,6 @@
 import React from 'react';
 import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom';
 
-import ScrollToTop from './components/ScrollToTop/ScrollToTop';
 import Header from './components/Header/Header';
 import HomePage from './pages/HomePage';
 import ContactUsPage from './pages/ContactUsPage';
@@ -15,7 +14,6 @@ import './App.css';
 export default function App() {
   return (
     <BrowserRouter basename="/">
-      <ScrollToTop />
       <Header />
       <main>
         <Switch>

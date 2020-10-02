@@ -18,13 +18,11 @@
 
 .tab a {
   align-items: center;
-  color: currentColor;
   border-bottom: 2px solid transparent;
   border-top: 2px solid transparent;
   display: flex;
   height: 100%;
   justify-content: center;
-  text-decoration: none;
   width: 100%;
 }
 

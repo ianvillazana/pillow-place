@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 import Button from '../components/Button/Button';
 import Product from '../components/Product/Product';
@@ -12,7 +13,7 @@ export default function HomePage() {
         <div className={styles.landingContent}>
           <h1>A PLACE TO LAY YOUR HEAD</h1>
           <h2>YOUR SOFT LANDING AWAITS</h2>
-          <Button large>SHOP NOW</Button>
+          <Link to="/shop/all"><Button large>SHOP NOW</Button></Link>
         </div>
       </section>
       <section className={styles.returnPolicy}>
@@ -29,15 +30,27 @@ export default function HomePage() {
           <p>PILLOWS FOR ALL SLEEPERS</p>
         </div>
       </section>
-      <section className={styles.popular}>
+      <section className="pillows">
         <h4>POPULAR PICKS</h4>
-        <div className={`${styles.products} max-width`}>
-          <Product item={collection.Aquagel} />
-          <Product item={collection.BioSoy} />
-          <Product item={collection.ComfortContour} />
-          <Product item={collection.HeavenlyTouch} />
-          <Product item={collection.GelCool} />
-          <Product item={collection.LuxeSilk} />
+        <div className="products max-width">
+          <Link to="/shop/products/Aquagel">
+            <Product item={collection.Aquagel} />
+          </Link>
+          <Link to="/shop/products/BioSoy">
+            <Product item={collection.BioSoy} />
+          </Link>
+          <Link to="/shop/products/ComfortContour">
+            <Product item={collection.ComfortContour} />
+          </Link>
+          <Link to="/shop/products/HeavenlyTouch">
+            <Product item={collection.HeavenlyTouch} />
+          </Link>
+          <Link to="/shop/products/GelCool">
+            <Product item={collection.GelCool} />
+          </Link>
+          <Link to="/shop/products/LuxeSilk">
+            <Product item={collection.LuxeSilk} />
+          </Link>
         </div>
       </section>
     </div>

@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 import IconButton from '../../components/IconButton/IconButton';
 import logo from '../../images/homepage/logo.png';
@@ -19,7 +20,7 @@ export default function Header() {
     <div className={styles.bottom}>
       <IconButton icon={menuIcon} />
       <div className={styles.logo}>
-        <img src={logo} alt="Pillow Place" />
+        <Link to="/"><img src={logo} alt="Pillow Place" /></Link>
       </div>
       <IconButton icon={cartIcon} />
     </div>
