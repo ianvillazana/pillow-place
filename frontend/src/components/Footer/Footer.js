@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 import twitterIcon from '../../images/SVG/twitter.svg';
 import facebookIcon from '../../images/SVG/facebook.svg';
@@ -13,10 +14,10 @@ export default function Footer() {
           <h5>SUPPORT</h5>
           <ul>
             <li>ACCOUNT</li>
-            <li>CONTACT US</li>
-            <li>FAQ</li>
-            <li>RETURN POLICY</li>
-            <li>SHIPPING</li>
+            <li><Link to="/contact-us">CONTACT US</Link></li>
+            <li><Link to="/faq">FAQ</Link></li>
+            <li><Link to="/return-policy">RETURN POLICY</Link></li>
+            <li><Link to="/shipping">SHIPPING</Link></li>
             <li>TERMS OF SERVICE</li>
           </ul>
         </div>
@@ -50,9 +51,15 @@ export default function Footer() {
       </div>
       <div className={styles.bottom}>
         <div className={styles.icons}>
-          <img src={twitterIcon} alt="twitter" />
-          <img src={facebookIcon} alt="facebook" />
-          <img src={instagramIcon} alt="instagram" />
+          <a href="https://twitter.com/">
+            <img src={twitterIcon} alt="twitter" />
+          </a>
+          <a href="https://facebook.com/">
+            <img src={facebookIcon} alt="facebook" />
+          </a>
+          <a href="https://instagram.com/">
+            <img src={instagramIcon} alt="instagram" />
+          </a>
         </div>
         <div>
           <p>© PILLOW PLACE 2020</p>

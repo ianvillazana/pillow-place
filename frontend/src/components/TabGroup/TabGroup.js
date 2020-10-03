@@ -16,7 +16,7 @@ export default function TabGroup(props) {
   return (
     <div className={styles.tabGroup}>
       {Object.keys(tabs).map((tab, index) => (
-        <div className={styles.tab}>
+        <div className={styles.tab} key={index}>
           <Tab selected={index === tabValue} route={tabs[tab]}>{tab}</Tab>
         </div>
       ))}

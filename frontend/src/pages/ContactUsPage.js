@@ -9,7 +9,7 @@ export default function ContactUsPage() {
   return (
     <div className="page">
       <h2>CONTACT US</h2>
-      <div style={{textAlign: "center"}}>
+      <div className={styles.text}>
         <p className="paragraph">
           Have a question? We'll get back to you within 48 hours.
         </p>

@@ -9,10 +9,9 @@ export default function FaqPage() {
           How do I create an online account?
         </p>
         <p className="paragraph">
-          It’s easy. Just click on account in the top right corner of this 
-          webpage (or in the menu for smaller screens) and follow the 
-          instructions. You’re just a few minutes away from simplifying your 
-          shopping!
+          It’s easy. Just click on create account in the top right corner of 
+          this webpage and follow the instructions. You’re just a few minutes 
+          away from simplifying your shopping!
         </p>
         <p className="h7">
           Can I order by phone instead?

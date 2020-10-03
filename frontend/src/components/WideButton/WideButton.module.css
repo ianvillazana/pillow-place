@@ -1,0 +1,19 @@
+.wideButton {
+  background-color: transparent;
+  border: 1px solid #000;
+  color: #000;
+  cursor: pointer;
+  display: inline-block;
+  font-size: 1.6rem;
+  line-height: 1.42;
+  padding: 1.2rem 2rem;
+  text-align: center;
+  text-decoration: none;
+  vertical-align: center;
+  white-space: nowrap;
+  width: 90%;
+}
+
+.wideButton:hover {
+  background-color: var(--main);
+}

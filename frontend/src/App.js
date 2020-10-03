@@ -1,6 +1,7 @@
 import React from 'react';
-import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom';
+import { BrowserRouter, Switch, Route } from 'react-router-dom';
 
+import ScrollToTop from './components/ScrollToTop/ScrollToTop';
 import Header from './components/Header/Header';
 import HomePage from './pages/HomePage';
 import ContactUsPage from './pages/ContactUsPage';
@@ -8,12 +9,14 @@ import FaqPage from './pages/FaqPage';
 import ReturnPolicyPage from './pages/ReturnPolicyPage';
 import ShippingPage from './pages/ShippingPage';
 import ShopPage from './pages/ShopPage';
+import ProductPage from './pages/ProductPage';
 import Footer from './components/Footer/Footer';
 import './App.css';
 
 export default function App() {
   return (
     <BrowserRouter basename="/">
+      <ScrollToTop />
       <Header />
       <main>
         <Switch>
@@ -26,6 +29,7 @@ export default function App() {
           <Route path="/shop/mixed-sleeper" exact render={() => <ShopPage tabValue={2} />} />
           <Route path="/shop/all" exact render={() => <ShopPage tabValue={3} />} />
           <Route path="/shop" exact render={() => <ShopPage tabValue={3} />} />
+          <Route path="/shop/products/:id" exact component={ProductPage} />
           <Route path="/home" exact component={HomePage} />
           <Route path="/" exact component={HomePage} />
           <Route component={HomePage} />

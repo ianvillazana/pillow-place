@@ -58,14 +58,14 @@
   display: flex;
 }
 
-.icons img {
+.icons a {
   cursor: pointer;
   height: 3rem;
   user-select: none;
   width: 3rem;
 }
 
-.icons img:not(:last-child) {
+.icons a:not(:last-child) {
   margin-right: 3.5rem;
 }
 

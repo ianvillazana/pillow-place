@@ -23,11 +23,11 @@ export default function HomePage() {
           you purchased from us online for up to 14 days from the date of 
           receiving your order. You just have to pay for return shipping fees.
         </p>
-        <a href="/">CLICK HERE FOR THE FULL DETAILS</a>
+        <Link to="/return-policy">CLICK HERE FOR THE FULL DETAILS</Link>
       </section>
       <section className={styles.featured}>
         <div className={styles.featuredButton}>
-          <p>PILLOWS FOR ALL SLEEPERS</p>
+          <Link to="/shop/mixed-sleeper"><p>PILLOWS FOR ANY SLEEPER</p></Link>
         </div>
       </section>
       <section className="pillows">
