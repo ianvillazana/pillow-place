@@ -24,7 +24,7 @@ export default function Header() {
 
   return (
     <header className={styles.header}>
-      <Menu show={menuIsOpen} onClick={() => setMenuIsOpen(false)} />
+      {menuIsOpen && <Menu onClick={() => setMenuIsOpen(false)} />}
       <div className={styles.top}>
         <div className={styles.options}>
           <button>CREATE ACCOUNT</button>
