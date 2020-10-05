@@ -2,6 +2,7 @@
   align-items: center;
   display: flex;
   justify-content: space-evenly;
+  margin-top: 1rem;
   width: 100%;
 }
 
@@ -13,6 +14,7 @@
   align-items: center;
   display: flex;
   flex-direction: column;
+  text-align: center;
   width: 35%;
 }
 
@@ -26,9 +28,9 @@
 }
 
 .quantity {
+  align-items: center;
   display: flex;
   flex-direction: column;
-  align-items: center;
   justify-content: center;
 }
 
@@ -58,8 +60,9 @@
 
 .quantity div {
   align-items: center;
-  border-left: 1px solid #ccc;
-  border-right: 1px solid #ccc;
+  border-left: 1px solid #bbb;
+  border-right: 1px solid #bbb;
   display: flex;
   justify-content: center;
+  width: 3.3rem;
 }

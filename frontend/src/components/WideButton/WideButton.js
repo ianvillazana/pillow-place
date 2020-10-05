@@ -3,10 +3,10 @@ import React from 'react';
 import styles from './WideButton.module.css';
 
 export default function WideButton(props) {
-  const { onClick, children } = props;
+  const { onClick, className, children } = props;
 
   return (
-    <button className={styles.wideButton} onClick={onClick}>
+    <button className={`${styles.wideButton} ${className}`} onClick={onClick}>
       {children}
     </button>
   );

@@ -5,20 +5,19 @@
   position: fixed;
   right: 0;
   top: 0;
-  width: 40rem;
-  z-index: 100;
   overflow-x: hidden;
   overflow-y: scroll;
+  width: 40rem;
+  z-index: 100;
 }
 
 .top {
-  width: 100%;
-  height: 10rem;
-  display: flex;
   align-items: center;
   border-bottom: 1px solid #000;
-  justify-content: center;
-  position: relative;
+  display: flex;
+  height: 10rem;
+  justify-content: space-evenly;
+  width: 100%;
 }
 
 .top h3 {
@@ -28,9 +27,8 @@
 .close {
   cursor: pointer;
   font-size: 3.5rem;
-  left: 4rem;
   opacity: 0.6;
-  position: absolute;
+  user-select: none;
 }
 
 .close:hover {
@@ -38,10 +36,10 @@
   transform: scale(1.05);
 }
 
-.content {
-  display: flex;
-  flex-direction: column;
-  width: 100%;
+.ghost {
+  font-size: 3.5rem;
+  opacity: 0;
+  user-select: none;
 }
 
 .empty {
@@ -50,4 +48,36 @@
   margin-top: 4.1rem;
   text-align: center;
   width: 100%;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.content h3 {
+  margin: 2.5rem 2rem;
+}
+
+.wideBtns {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.continueBtn {
+  margin-top: 2.5rem;
+}
+
+.continueBtn:hover {
+  background-color: #fff;
+}
+
+/* 646px */
+@media (max-width: 40.375em) {
+  .cart {
+    width: 100%;
+  }
 }

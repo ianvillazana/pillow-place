@@ -4,6 +4,7 @@ import { CSSTransition } from 'react-transition-group';
 
 import Backdrop from '../Backdrop/Backdrop';
 import CartItem from '../CartItem/CartItem';
+import WideButton from '../WideButton/WideButton';
 import { CartContext } from '../../context/cart-context';
 import './CartAnimation.css';
 import styles from './Cart.module.css';
@@ -35,22 +36,31 @@ export default function Cart() {
       >
         <aside className={styles.cart}>
           <div className={styles.top}>
-            <h3>REVIEW YOUR CART</h3>
             <div className={styles.close} onClick={cart.close}>&times;</div>
+            <h3>REVIEW YOUR CART</h3>
+            <div className={styles.ghost} onClick={cart.close}>&times;</div>
           </div>
-          <div className={styles.content}>
-            {(Object.keys(cart.state.items).length === 0)
-              ? <div className={styles.empty}>Your Cart is Empty</div> 
-              : Object.keys(cart.state.items).map((item, index) => (
-                <CartItem 
-                  item={cart.state.items[item]} 
+          {(Object.keys(cart.state.items).length === 0)
+            ? <div className={styles.empty}>Your Cart is Empty</div>
+            : Object.keys(cart.state.items).map((item, index) => (
+              <div className={styles.content} key={index} >
+                <CartItem
+                  item={cart.state.items[item]}
                   add={() => cart.addItem(cart.state.items[item])}
                   remove={() => cart.removeItem(cart.state.items[item])}
-                  key={index} 
                 />
-              ))
-            }
-          </div>  
+                <h3>TOTAL: ${cart.state.priceTotal}</h3>
+                <div className={styles.wideBtns}>
+                  <WideButton>
+                    CHECKOUT
+                  </WideButton>
+                  <WideButton className={styles.continueBtn} onClick={cart.close}>
+                    CONTINUE SHOPPING
+                  </WideButton>
+                </div>
+              </div>
+            ))
+          }
         </aside>
       </CSSTransition>
     </Fragment>
