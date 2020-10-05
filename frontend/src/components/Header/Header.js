@@ -31,7 +31,7 @@ export default function Header() {
 
   return (
     <Fragment>
-      <Cart show={cart.state.show} />
+      <Cart show={cart.state.show} onClick={cart.close} />
       <header className={styles.header}>
         {menuIsOpen && <Menu onClick={() => setMenuIsOpen(false)} />}
         <div className={styles.top}>

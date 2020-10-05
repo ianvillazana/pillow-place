@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import ReactDOM from 'react-dom';
 import { CSSTransition } from 'react-transition-group';
 
+import Backdrop from '../Backdrop/Backdrop';
 import './CartAnimation.css';
 import styles from './Cart.module.css';
 
@@ -15,17 +16,20 @@ export default function Cart(props) {
   }
 
   const content = (
-    <CSSTransition 
-      in={show} 
-      timeout={200} 
-      classNames="slide-in-right" 
-      mountOnEnter 
-      unmountOnExit
-    >
-      <aside className={styles.cart}>
-        <p>Hello</p>
-      </aside>
-    </CSSTransition>
+    <Fragment>
+      {show && <Backdrop onClick={onClick} />}
+      <CSSTransition 
+        in={show} 
+        timeout={200} 
+        classNames="slide-in-right" 
+        mountOnEnter 
+        unmountOnExit
+      >
+        <aside className={styles.cart}>
+          <p>Hello</p>
+        </aside>
+      </CSSTransition>
+    </Fragment>
   );
 
   return ReactDOM.createPortal(content, document.getElementById('cart-hook'));
