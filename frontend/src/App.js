@@ -2,6 +2,7 @@ import React from 'react';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 
 import ScrollToTop from './components/ScrollToTop/ScrollToTop';
+import Cart from './components/Cart/Cart';
 import Header from './components/Header/Header';
 import HomePage from './pages/HomePage';
 import ContactUsPage from './pages/ContactUsPage';
@@ -16,7 +17,7 @@ import { useCart } from './hooks/useCart';
 import './App.css';
 
 export default function App() {
-  const [state, open, close] = useCart();
+  const [state, open, close, addItem, removeItem, completeOrder, clear] = useCart();
 
   const routes = (
     <Switch>
@@ -37,9 +38,12 @@ export default function App() {
   );
 
   return (
-    <CartContext.Provider value={{ state, open, close }}>
+    <CartContext.Provider 
+      value={{ state, open, close, addItem, removeItem, completeOrder, clear }}
+    >
       <BrowserRouter basename="/">
         <ScrollToTop />
+        <Cart />
         <Header />
         <main>{routes}</main>
         <Footer />

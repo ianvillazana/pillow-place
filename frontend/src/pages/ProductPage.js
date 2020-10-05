@@ -1,10 +1,13 @@
-import React from 'react';
+import React, { useContext } from 'react';
 
 import WideButton from '../components/WideButton/WideButton';
+import { CartContext } from '../context/cart-context';
 import collection from '../utils/collection';
 import styles from './ProductPage.module.css';
 
 export default function ProductPage(props) {
+  const cart = useContext(CartContext);
+
   const item = collection[props.match.params.id];
 
   return (
@@ -18,7 +21,9 @@ export default function ProductPage(props) {
           <p className="caption-2">{item.type}</p>
           <h3>${item.price}</h3>
           <p className={styles.sku}>SKU: {item.sku}</p>
-          <WideButton>ADD TO CART</WideButton>
+          <WideButton onClick={() => cart.addItem(item)}>
+            ADD TO CART
+          </WideButton>
         </div>
       </section>
       <section className={`${styles.information} max-width`}>
