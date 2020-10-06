@@ -71,10 +71,6 @@
   margin-top: 2.5rem;
 }
 
-.continueBtn:hover {
-  background-color: #fff;
-}
-
 /* 646px */
 @media (max-width: 40.375em) {
   .cart {

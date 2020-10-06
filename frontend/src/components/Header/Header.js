@@ -45,7 +45,9 @@ export default function Header() {
             <img src={logo} alt="Pillow Place" onClick={closeAll} />
           </Link>
         </div>
-        <IconButton icon={cartIcon} onClick={openCart} />
+        <IconButton icon={cartIcon} onClick={openCart}>
+          {cart.state.itemTotal > 0 ? cart.state.itemTotal : null}
+        </IconButton>
       </div>
     </header>
   );
