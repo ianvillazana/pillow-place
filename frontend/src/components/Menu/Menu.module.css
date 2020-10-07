@@ -15,8 +15,8 @@
   flex-direction: column;
 }
 
-/* 646px */
-@media (max-width: 40.375em) {
+/* 600px */
+@media (max-width: 37.5em) {
   .menu {
     border-right: none;
     width: calc(100% - 6rem);

@@ -67,12 +67,20 @@
   justify-content: center;
 }
 
+.wideBtns button {
+  width: 90%;
+}
+
 .continueBtn {
   margin-top: 2.5rem;
 }
 
-/* 646px */
-@media (max-width: 40.375em) {
+.continueBtn:hover {
+  background-color: #fff;
+}
+
+/* 600px */
+@media (max-width: 37.5em) {
   .cart {
     width: 100%;
   }

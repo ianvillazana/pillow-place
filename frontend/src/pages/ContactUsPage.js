@@ -39,7 +39,7 @@ export default function ContactUsPage() {
         />
         <Input 
           id="email"
-          type="text"
+          type="email"
           label="Email"
           validators={[VALIDATOR_EMAIL()]}
           errorText="Please enter a valid email."

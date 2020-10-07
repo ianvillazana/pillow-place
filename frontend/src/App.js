@@ -2,6 +2,7 @@ import React from 'react';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 
 import ScrollToTop from './components/ScrollToTop/ScrollToTop';
+import AuthForm from './components/auth/AuthForm';
 import Cart from './components/Cart/Cart';
 import Header from './components/Header/Header';
 import HomePage from './pages/HomePage';
@@ -43,6 +44,7 @@ export default function App() {
     >
       <BrowserRouter basename="/">
         <ScrollToTop />
+        <AuthForm show />
         <Cart />
         <Header />
         <main>{routes}</main>
