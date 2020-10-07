@@ -1,4 +1,4 @@
-import React, { Fragment, useContext, useEffect } from 'react';
+import React, { Fragment, useContext } from 'react';
 import ReactDOM from 'react-dom';
 import { CSSTransition } from 'react-transition-group';
 
@@ -11,18 +11,6 @@ import styles from './Cart.module.css';
 
 export default function Cart() {
   const cart = useContext(CartContext);
-
-  // Close cart when browser back button is pressed.
-  useEffect(() => {
-    window.onpopstate = () => cart.close();
-  });
-
-  // Disable scrolling of the body while cart is open.
-  if (cart.state.show) {
-    document.body.style.overflow = "hidden";
-  } else {
-    document.body.style.overflow = "visible";
-  }
 
   const content = (
     <Fragment>

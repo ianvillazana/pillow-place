@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 
 import ScrollToTop from './components/ScrollToTop/ScrollToTop';
@@ -13,12 +13,32 @@ import ShippingPage from './pages/ShippingPage';
 import ShopPage from './pages/ShopPage';
 import ProductPage from './pages/ProductPage';
 import Footer from './components/Footer/Footer';
+import { AuthContext } from './context/auth-context';
 import { CartContext } from './context/cart-context';
+import { useAuth } from './hooks/useAuth';
 import { useCart } from './hooks/useCart';
 import './App.css';
 
 export default function App() {
-  const [state, open, close, addItem, removeItem, completeOrder, clear] = useCart();
+  const [authState, authOpen, authClose] = useAuth();
+  const [
+    cartState, cartOpen, cartClose, addItem, removeItem, completeOrder, clear
+  ] = useCart();
+
+  // Close authForm and cart when browser back button is pressed.
+  useEffect(() => {
+    window.onpopstate = () => {
+      authClose();
+      cartClose();
+    }
+  });
+
+  // Disable scrolling of the body while authForm or cart is open.
+  if (authState.show || cartState.show) {
+    document.body.style.overflow = "hidden";
+  } else {
+    document.body.style.overflow = "visible";
+  }
 
   const routes = (
     <Switch>
@@ -39,17 +59,24 @@ export default function App() {
   );
 
   return (
-    <CartContext.Provider 
-      value={{ state, open, close, addItem, removeItem, completeOrder, clear }}
+    <AuthContext.Provider
+      value={{ state: authState, open: authOpen, close: authClose }}
     >
-      <BrowserRouter basename="/">
-        <ScrollToTop />
-        <AuthForm show />
-        <Cart />
-        <Header />
-        <main>{routes}</main>
-        <Footer />
-      </BrowserRouter>
-    </CartContext.Provider>
+      <CartContext.Provider 
+        value={{ 
+          state: cartState, open: cartOpen, close: cartClose, 
+          addItem, removeItem, completeOrder, clear 
+        }}
+      >
+        <BrowserRouter basename="/">
+          <ScrollToTop />
+          <AuthForm />
+          <Cart />
+          <Header />
+          <main>{routes}</main>
+          <Footer />
+        </BrowserRouter>
+      </CartContext.Provider>
+    </AuthContext.Provider>
   );
 }

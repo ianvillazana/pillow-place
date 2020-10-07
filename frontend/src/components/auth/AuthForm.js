@@ -1,10 +1,11 @@
-import React, { Fragment, useEffect } from 'react';
+import React, { Fragment, useContext } from 'react';
 import ReactDOM from 'react-dom';
 import { CSSTransition } from 'react-transition-group';
 
 import Backdrop from '../Backdrop/Backdrop';
 import Input from '../Input/Input';
 import WideButton from '../WideButton/WideButton';
+import { AuthContext } from '../../context/auth-context';
 import { 
   VALIDATOR_REQUIRE, VALIDATOR_EMAIL, VALIDATOR_MINLENGTH } 
   from '../../utils/validators';
@@ -12,13 +13,21 @@ import styles from './AuthForm.module.css';
 import './AuthFormAnimation.css';
 
 function Overlay(props) {
-  const { isLogin, setIsLogin, onSubmit, onCancel } = props;
+  const { auth } = props;
+
+  const switchHandler = () => {
+    if (auth.state.isLogin) {
+      auth.open(false);
+    } else {
+      auth.open(true);
+    }
+  }
 
   const content = (
     <div className={styles.authForm}>
-      <h2>{isLogin ? "Exisiting Customer" : "New Account"}</h2>
-      <form onSubmit={onSubmit ? onSubmit : e => e.preventDefault()}>
-        {!isLogin && (
+      <h2>{auth.state.isLogin ? "Existing Customer" : "New Account"}</h2>
+      <form onSubmit={e => e.preventDefault()}>
+        {!auth.state.isLogin && (
           <Input 
             id="name"
             type="text"
@@ -44,17 +53,20 @@ function Overlay(props) {
           errorText="Please enter a valid password, at least 6 characters."
           onInput={() => {}}
         />
-        <div onClick={setIsLogin} className={styles.switch}>
-          {isLogin 
+        <div 
+          onClick={switchHandler} 
+          className={styles.switch}
+        >
+          {auth.state.isLogin 
             ? "Don't have an account? Sign up here!" 
             : "Already have an account? Log in here!"
           }
         </div>
         <div className={styles.buttons}>
-          <WideButton onClick={onSubmit}>
-            {isLogin ? "LOG IN" : "SIGN UP"}
+          <WideButton onClick={() => {}}>
+            {auth.state.isLogin ? "LOG IN" : "SIGN UP"}
           </WideButton>
-          <WideButton onClick={onCancel} className={styles.cancelBtn}>
+          <WideButton onClick={() => auth.close()} className={styles.cancelBtn}>
             CANCEL
           </WideButton>
         </div>
@@ -65,25 +77,20 @@ function Overlay(props) {
   return ReactDOM.createPortal(content, document.getElementById('authForm-hook'));
 }
 
-export default function AuthForm(props) {
-  const { show, onCancel } = props;
-
-  // Close form when browser back button is pressed.
-  useEffect(() => {
-    window.onpopstate = () => onCancel();
-  });
+export default function AuthForm() {
+  const auth = useContext(AuthContext);
 
   return (
     <Fragment>
-      {show && <Backdrop onClick={onCancel} />}
+      {auth.state.show && <Backdrop onClick={auth.close} />}
       <CSSTransition 
-        in={show} 
+        in={auth.state.show} 
         timeout={200} 
         classNames="authForm" 
         mountOnEnter 
         unmountOnExit 
       >
-        <Overlay {...props} />
+        <Overlay auth={auth} />
       </CSSTransition>
     </Fragment>
   );

@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 
 import IconButton from '../../components/IconButton/IconButton';
 import Menu from '../../components/Menu/Menu';
+import { AuthContext } from '../../context/auth-context';
 import { CartContext } from '../../context/cart-context';
 import logo from '../../images/homepage/logo.png';
 import menuIcon from '../../images/SVG/menu.svg';
@@ -10,6 +11,7 @@ import cartIcon from '../../images/SVG/shopping-cart.svg';
 import styles from './Header.module.css';
 
 export default function Header() {
+  const auth = useContext(AuthContext);
   const cart = useContext(CartContext);
   const [menuIsOpen, setMenuIsOpen] = useState(false);
 
@@ -33,9 +35,9 @@ export default function Header() {
       {menuIsOpen && <Menu onClick={() => setMenuIsOpen(false)} />}
       <div className={styles.top}>
         <div className={styles.options}>
-          <button>CREATE ACCOUNT</button>
+          <button onClick={() => auth.open(false)}>CREATE ACCOUNT</button>
           <p>•</p>
-          <button>LOG IN</button>
+          <button onClick={() => auth.open(true)}>LOG IN</button>
         </div>
       </div>
       <div className={styles.bottom}>
