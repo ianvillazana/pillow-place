@@ -33,7 +33,6 @@ const cartReducer = (state, action) => {
       } else {
         newCart[action.item.sku].total += 1;
       }
-      console.log(newCart); //remove
       return {
         ...state,
         show: true,
@@ -50,7 +49,6 @@ const cartReducer = (state, action) => {
       } else {
         newCart[action.item.sku].total -= 1;
       }
-      console.log(newCart); //remove
       return {
         ...state,
         items: newCart,

@@ -19,3 +19,8 @@
 .wideButton:hover {
   background-color: var(--main);
 }
+
+.wideButton:disabled {
+  opacity: 0.6;
+  pointer-events: none;
+}

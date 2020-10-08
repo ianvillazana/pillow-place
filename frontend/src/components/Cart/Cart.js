@@ -30,13 +30,15 @@ export default function Cart() {
           </div>
           {(Object.keys(cart.state.items).length === 0)
             ? <div className={styles.empty}>Your Cart is Empty</div>
-            : Object.keys(cart.state.items).map((item, index) => (
-              <div className={styles.content} key={index} >
-                <CartItem
-                  item={cart.state.items[item]}
-                  add={() => cart.addItem(cart.state.items[item])}
-                  remove={() => cart.removeItem(cart.state.items[item])}
-                />
+            : <div className={styles.content}>
+                {Object.keys(cart.state.items).map((item, index) => (
+                  <CartItem
+                    item={cart.state.items[item]}
+                    add={() => cart.addItem(cart.state.items[item])}
+                    remove={() => cart.removeItem(cart.state.items[item])}
+                    key={index}
+                  />
+                ))}
                 <h3>TOTAL: ${cart.state.priceTotal}</h3>
                 <div className={styles.wideBtns}>
                   <WideButton>
@@ -47,7 +49,6 @@ export default function Cart() {
                   </WideButton>
                 </div>
               </div>
-            ))
           }
         </aside>
       </CSSTransition>

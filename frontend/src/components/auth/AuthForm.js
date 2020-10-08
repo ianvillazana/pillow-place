@@ -6,6 +6,7 @@ import Backdrop from '../Backdrop/Backdrop';
 import Input from '../Input/Input';
 import WideButton from '../WideButton/WideButton';
 import { AuthContext } from '../../context/auth-context';
+import { useForm } from '../../hooks/useForm';
 import { 
   VALIDATOR_REQUIRE, VALIDATOR_EMAIL, VALIDATOR_MINLENGTH } 
   from '../../utils/validators';
@@ -15,18 +16,31 @@ import './AuthFormAnimation.css';
 function Overlay(props) {
   const { auth } = props;
 
+  const [formState, inputHandler, setFormData] = useForm({
+    email: { value: "", isValid: false },
+    password: { value: "", isValid: false }
+  }, false);
+
   const switchHandler = () => {
     if (auth.state.isLogin) {
+      setFormData({ ...formState.inputs, name: undefined }, false);
       auth.open(false);
     } else {
+      setFormData({ ...formState.inputs, name: { value: "", isValid: false } });
       auth.open(true);
     }
+  }
+
+  const submitHandler = (event) => {
+    event.preventDefault();
+    
+    console.log(formState);
   }
 
   const content = (
     <div className={styles.authForm}>
       <h2>{auth.state.isLogin ? "Existing Customer" : "New Account"}</h2>
-      <form onSubmit={e => e.preventDefault()}>
+      <form onSubmit={submitHandler}>
         {!auth.state.isLogin && (
           <Input 
             id="name"
@@ -34,7 +48,7 @@ function Overlay(props) {
             label="Name"
             validators={[VALIDATOR_REQUIRE()]}
             errorText="Please enter your name."
-            onInput={() => {}}
+            onInput={inputHandler}
           />
         )}
         <Input
@@ -43,7 +57,7 @@ function Overlay(props) {
           label="Email"
           validators={[VALIDATOR_EMAIL()]}
           errorText="Please enter a valid email address."
-          onInput={() => {}}
+          onInput={inputHandler}
         />
         <Input
           id="password"
@@ -51,7 +65,7 @@ function Overlay(props) {
           label="Password"
           validators={[VALIDATOR_MINLENGTH(6)]}
           errorText="Please enter a valid password, at least 6 characters."
-          onInput={() => {}}
+          onInput={inputHandler}
         />
         <div 
           onClick={switchHandler} 
@@ -63,7 +77,7 @@ function Overlay(props) {
           }
         </div>
         <div className={styles.buttons}>
-          <WideButton onClick={() => {}}>
+          <WideButton type="submit" disabled={!formState.isValid}>
             {auth.state.isLogin ? "LOG IN" : "SIGN UP"}
           </WideButton>
           <WideButton onClick={() => auth.close()} className={styles.cancelBtn}>
