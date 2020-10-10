@@ -1,0 +1,52 @@
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 5rem;
+  max-width: 60rem;
+  width: 100%;
+}
+
+.section {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  width: 100%;
+}
+
+.section h5 {
+  margin-bottom: 1.5rem;
+}
+
+.section p {
+  margin-bottom: 0;
+}
+
+.grid {
+  display: grid;
+  gap: 2rem;
+  grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
+}
+
+.openAuth {
+  align-self: flex-end;
+  cursor: pointer;
+  font-size: 1.3rem;
+  max-width: fit-content;
+  margin-top: 1rem;
+  text-decoration: underline;
+}
+
+.openAuth:hover {
+  color: var(--main);
+}
+
+.item {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 1.5rem;
+}
+
+.itemSKU {
+  color: rgba(0,0,0,0.65);
+}

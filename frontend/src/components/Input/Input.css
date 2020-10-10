@@ -1,6 +1,6 @@
 .form-control label {
-  font-size: 1.4rem;
-  letter-spacing: 0.75px;
+  font-size: 1.3rem;
+  letter-spacing: 1px;
   margin-bottom: 1rem;
   text-transform: uppercase;
 }
@@ -21,7 +21,7 @@
   background: #f8f8f8;
   border: 1px solid rgba(0,0,0,0.9);
   font: inherit;
-  padding: 0.15rem 0;
+  padding: 0.15rem 0.3rem;
   width: 100%;
 }
 
@@ -35,6 +35,10 @@
 .form-control--invalid label,
 .form-control--invalid p {
   color: red;
+}
+
+.form-control--invalid p {
+  font-size: 1.3rem;
 }
 
 .form-control--invalid input,

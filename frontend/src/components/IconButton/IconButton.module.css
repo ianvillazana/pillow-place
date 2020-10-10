@@ -6,6 +6,7 @@
   justify-content: center;
   position: relative;
   width: 4rem;
+  user-select: none;
 }
 
 .iconButton img {

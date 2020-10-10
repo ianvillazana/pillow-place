@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 
 import ScrollToTop from './components/ScrollToTop/ScrollToTop';
-import AuthForm from './components/auth/AuthForm';
+import AuthForm from './components/AuthForm/AuthForm';
 import Cart from './components/Cart/Cart';
 import Header from './components/Header/Header';
 import HomePage from './pages/HomePage';
@@ -12,6 +12,7 @@ import ReturnPolicyPage from './pages/ReturnPolicyPage';
 import ShippingPage from './pages/ShippingPage';
 import ShopPage from './pages/ShopPage';
 import ProductPage from './pages/ProductPage';
+import CheckoutPage from './pages/CheckoutPage';
 import Footer from './components/Footer/Footer';
 import { AuthContext } from './context/auth-context';
 import { CartContext } from './context/cart-context';
@@ -52,6 +53,7 @@ export default function App() {
       <Route path="/shop/all" exact render={() => <ShopPage tabValue={3} />} />
       <Route path="/shop" exact render={() => <ShopPage tabValue={3} />} />
       <Route path="/shop/products/:id" exact component={ProductPage} />
+      <Route path="/checkout" exact component={CheckoutPage} />
       <Route path="/home" exact component={HomePage} />
       <Route path="/" exact component={HomePage} />
       <Route component={HomePage} />

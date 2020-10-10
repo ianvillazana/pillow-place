@@ -97,7 +97,7 @@ a {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  padding: 9rem 1.5rem;
+  padding: 4.5rem 1.5rem 9rem 1.5rem;
 }
 
 .max-width {
@@ -139,7 +139,7 @@ a {
 
   .page {
     font-size: 1.4rem;
-    padding: 9rem 1rem;
+    padding: 4.5rem 1rem 9rem 1rem;
   }
 
   .caption {

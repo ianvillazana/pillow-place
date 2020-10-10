@@ -38,7 +38,7 @@ export default function Footer() {
               <h6>ADDRESS</h6>
               <p>1100 Pillow Place</p>
               <p>Pillowtown, Ontario</p>
-              <p>Z1Z 1Z1</p>
+              <p>Z2Z 2Z2</p>
             </div>
             <div className={styles.contactSection}>
               <h6>STORE HOURS</h6>

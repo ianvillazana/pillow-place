@@ -1,5 +1,6 @@
 import React, { Fragment, useContext } from 'react';
 import ReactDOM from 'react-dom';
+import { useHistory } from 'react-router-dom';
 import { CSSTransition } from 'react-transition-group';
 
 import Backdrop from '../Backdrop/Backdrop';
@@ -11,6 +12,18 @@ import styles from './Cart.module.css';
 
 export default function Cart() {
   const cart = useContext(CartContext);
+
+  const history = useHistory();
+
+  const checkout = () => {
+    cart.close();
+    history.push("/checkout");
+  }
+
+  const continueShopping = () => {
+    cart.close();
+    history.push("/shop");
+  }
 
   const content = (
     <Fragment>
@@ -41,10 +54,13 @@ export default function Cart() {
                 ))}
                 <h3>TOTAL: ${cart.state.priceTotal}</h3>
                 <div className={styles.wideBtns}>
-                  <WideButton>
+                  <WideButton onClick={checkout}>
                     CHECKOUT
                   </WideButton>
-                  <WideButton className={styles.continueBtn} onClick={cart.close}>
+                  <WideButton 
+                    className={styles.continueBtn} 
+                    onClick={continueShopping}
+                  >
                     CONTINUE SHOPPING
                   </WideButton>
                 </div>

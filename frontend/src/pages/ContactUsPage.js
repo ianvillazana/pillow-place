@@ -29,6 +29,7 @@ export default function ContactUsPage() {
           label="Subject"
           validators={[VALIDATOR_REQUIRE()]}
           errorText="Please enter a subject."
+          onInput={() => {}}
         />
         <Input 
           id="name"
@@ -36,6 +37,7 @@ export default function ContactUsPage() {
           label="Name"
           validators={[VALIDATOR_REQUIRE()]}
           errorText="Please enter your name."
+          onInput={() => {}}
         />
         <Input 
           id="email"
@@ -43,6 +45,7 @@ export default function ContactUsPage() {
           label="Email"
           validators={[VALIDATOR_EMAIL()]}
           errorText="Please enter a valid email."
+          onInput={() => {}}
         />
         <Input 
           id="message"
@@ -51,6 +54,7 @@ export default function ContactUsPage() {
           validators={[VALIDATOR_REQUIRE()]}
           errorText="Please enter your message."
           textarea
+          onInput={() => {}}
         />
         <div className={styles.submit}><Button>SUBMIT</Button></div>
       </form>

@@ -11,7 +11,7 @@ const inputReducer = (state, action) => {
         value: action.val,
         isValid: validate(action.val, action.validators)
       };
-    case 'TOUCH': 
+    case 'TOUCH':
       return {
         ...state,
         isTouched: true
@@ -23,9 +23,9 @@ const inputReducer = (state, action) => {
 
 export default function Input(props) {
   const [inputState, dispatch] = useReducer(inputReducer, {
-    value: props.initialValue || '', 
+    value: props.initialValue || '',
     isTouched: false,
-    isValid: props.initialValid || false 
+    isValid: props.initialValid || false
   });
 
   const { id, onInput } = props;
@@ -36,10 +36,10 @@ export default function Input(props) {
   }, [id, value, isValid, onInput]);
 
   const changeHandler = event => {
-    dispatch({ 
-      type: 'CHANGE', 
-      val: event.target.value, 
-      validators: props.validators 
+    dispatch({
+      type: 'CHANGE',
+      val: event.target.value,
+      validators: props.validators
     });
   }
 
@@ -50,23 +50,23 @@ export default function Input(props) {
   }
 
   const element = props.textarea ? (
-    <textarea 
-      id={props.id} 
-      rows={props.rows || 3} 
-      onChange={changeHandler} 
-      onBlur={touchHandler}
-      value={inputState.value}
-    />
-  ) : (
-    <input 
-      id={props.id} 
-      type={props.type} 
-      placeholder={props.placeholder} 
+    <textarea
+      id={props.id}
+      rows={props.rows || 3}
       onChange={changeHandler}
       onBlur={touchHandler}
       value={inputState.value}
     />
-  );
+  ) : (
+      <input
+        id={props.id}
+        type={props.type}
+        placeholder={props.placeholder}
+        onChange={changeHandler}
+        onBlur={touchHandler}
+        value={inputState.value}
+      />
+    );
 
   return (
     <div className={`form-control ${!inputState.isValid && inputState.isTouched && `form-control--invalid`}`}>

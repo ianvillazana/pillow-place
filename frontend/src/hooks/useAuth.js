@@ -4,9 +4,11 @@ const initialState = {
   show: false,
   isLogin: true,
   isLoggedIn: false, 
-  userId: null,
-  login: () => {}, 
-  logout: () => {} 
+  user: { 
+    id: null, 
+    email: null, 
+    name: null
+  }
 }
 
 const authReducer = (state, action) => {
