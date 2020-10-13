@@ -8,11 +8,24 @@ let DUMMY_USERS = [
     id: "u1",
     name: "Max Scwarz",
     email: "test@test.zzz",
-    password: "testers"
+    password: "testers",
+    orders: ["o1"]
   }
 ]
 
-// for POST request: api/users/signup
+const getUserOrdersById = (req, res, next) => {
+  const userId = req.params.uid;
+  const user = DUMMY_USERS.find(u => {
+    return u.id === userId
+  });
+
+  if (!user) {
+    return next(new HttpError("Could not find a user for the provided id.", 404));
+  }
+
+  res.json({orders: user.orders});
+}
+
 const signup = (req, res, next) => {
   // Input error checking using express-validator
   const errors = validationResult(req);
@@ -35,7 +48,6 @@ const signup = (req, res, next) => {
   res.status(201).json({user: createdUser});
 };
 
-// for POST request: api/users/login
 const login = (req, res, next) => {
   const { email, password } = req.body;
 
@@ -48,5 +60,6 @@ const login = (req, res, next) => {
   res.json({message: "Login successful."});
 };
 
+exports.getUserOrdersById = getUserOrdersById;
 exports.signup = signup;
 exports.login = login;

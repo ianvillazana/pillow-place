@@ -1,9 +1,11 @@
 const express = require('express');
 const bodyParser = require('body-parser');
+const mongoose = require('mongoose');
 
 const ordersRoutes = require('./routes/orders-routes');
 const usersRoutes = require('./routes/users-routes');
 const HttpError = require('./models/http-error');
+require('dotenv').config();
 
 const server = express();
 
@@ -28,4 +30,9 @@ server.use((error, req, res, next) => {
   res.json({message: error.message || "An unknown error occured."});
 });
 
-server.listen(5000);
+mongoose
+  .connect(process.env.MONGODB, {
+    useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true
+  })
+  .then(() => server.listen(5000))
+  .catch(error => console.log(error));

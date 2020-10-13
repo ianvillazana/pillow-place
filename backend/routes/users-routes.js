@@ -5,6 +5,12 @@ const usersController = require('../controllers/users-controller');
 
 const router = express.Router();
 
+router.get('/orders/:uid', usersController.getUserOrdersById);
+
+// TODO: PATCH user's list of orders: /orders/:uid/:oid
+
+// TODO: DELETE an order from user's list: /orders/:uid/:oid
+
 router.post('/signup', [
   check('name').not().isEmpty(),
   check('email').not().normalizeEmail().isEmail(),
