@@ -11,7 +11,7 @@ const itemsSchema = new Schema({
 });
 
 const orderSchema = new Schema({
-  customer: { type: String, required: false },
+  customer: { type: mongoose.Types.ObjectId, required: false, ref: 'User' },
   dateTime: { type: String, required: true },
   items: { type: [itemsSchema], required: true },
   totalPrice: { type: String, required: true }
