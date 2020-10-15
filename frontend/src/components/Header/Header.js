@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { Fragment, useContext, useState } from 'react';
 import { Link } from 'react-router-dom';
 
 import IconButton from '../../components/IconButton/IconButton';
@@ -35,9 +35,19 @@ export default function Header() {
       {menuIsOpen && <Menu onClick={() => setMenuIsOpen(false)} />}
       <div className={styles.top}>
         <div className={styles.options}>
-          <button onClick={() => auth.open(false)}>CREATE ACCOUNT</button>
-          <p>•</p>
-          <button onClick={() => auth.open(true)}>LOG IN</button>
+          {!auth.state.isLoggedIn ? (
+            <Fragment>
+              <button onClick={() => auth.open(false)}>CREATE ACCOUNT</button>
+              <p>•</p>
+              <button onClick={() => auth.open(true)}>LOG IN</button>
+            </Fragment>
+          ) : (
+            <Fragment>
+              <button onClick={() => {}}>MY ACCOUNT</button>
+              <p>•</p>
+              <button onClick={() => auth.logout()}>LOG OUT</button>
+            </Fragment>
+          )}
         </div>
       </div>
       <div className={styles.bottom}>

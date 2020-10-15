@@ -5,6 +5,7 @@
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
+  justify-content: center;
   left: calc(50% - 25rem);
   padding: 5rem;
   position: fixed;
@@ -25,6 +26,12 @@
   flex-direction: column;
   gap: 2rem;
   width: 100%;
+}
+
+.error {
+  color: var(--red);
+  font-size: 1.4rem;
+  margin-bottom: 1rem;
 }
 
 .switch {

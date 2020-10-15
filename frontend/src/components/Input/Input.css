@@ -34,7 +34,7 @@
 
 .form-control--invalid label,
 .form-control--invalid p {
-  color: red;
+  color: var(--red);
 }
 
 .form-control--invalid p {
@@ -44,5 +44,5 @@
 .form-control--invalid input,
 .form-control--invalid textarea {
   background: #ffd1d1;
-  border-color: red;
+  border-color: var(--red);
 }

@@ -14,7 +14,14 @@ const getOrderById = async (req, res, next) => {
     return next(new HttpError("Could not find an order for the provided id.", 404));
   }
 
-  res.json({ order: order.toObject({ getters: true }) });
+  if (!order) {
+    return next(new HttpError("Could not find an order for the provided id.", 404));
+  }
+
+  res.status(200).json({ 
+    message: "Order found.",
+    order: order.toObject({ getters: true }) 
+  });
 };
 
 const createOrder = async (req, res, next) => {
@@ -43,7 +50,10 @@ const createOrder = async (req, res, next) => {
     return next(new HttpError(error, 500));
   }
   
-  res.status(201).json({ order: createdOrder.toObject({ getters: true }) });
+  res.status(201).json({
+    message: "Order created successfully", 
+    order: createdOrder.toObject({ getters: true }) 
+  });
 };
 
 const deleteOrder = async(req, res, next) => {
@@ -58,11 +68,23 @@ const deleteOrder = async(req, res, next) => {
     ));
   }
 
+  if (!order) {
+    return next(new HttpError(
+      "Deleting order failed. Could not find an order for the provided id.", 404
+    ));
+  }
+
   // Get user
   let user;
   try {
     user = await User.findById(order.customer);
   } catch {
+    return next(new HttpError(
+      "Deleting order failed. Could not find the user with the provided id.", 404
+    ));
+  }
+
+  if (!user) {
     return next(new HttpError(
       "Deleting order failed. Could not find the user with the provided id.", 404
     ));
@@ -80,7 +102,7 @@ const deleteOrder = async(req, res, next) => {
     return next(new HttpError(error, 500));
   }
 
-  res.status(200).json({message: "Order deleted."});
+  res.status(200).json({ message: "Order deleted." });
 };
 
 exports.getOrderById = getOrderById;

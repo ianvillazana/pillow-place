@@ -98,5 +98,5 @@ export const useCart = () => {
     dispatch({ type: "CLEAR" });
   };
 
-  return [state, open, close, addItem, removeItem, completeOrder, clear];
+  return { state, open, close, addItem, removeItem, completeOrder, clear };
 };

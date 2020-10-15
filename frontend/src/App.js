@@ -21,21 +21,19 @@ import { useCart } from './hooks/useCart';
 import './App.css';
 
 export default function App() {
-  const [authState, authOpen, authClose] = useAuth();
-  const [
-    cartState, cartOpen, cartClose, addItem, removeItem, completeOrder, clear
-  ] = useCart();
+  const auth = useAuth();
+  const cart = useCart();
 
   // Close authForm and cart when browser back button is pressed.
   useEffect(() => {
     window.onpopstate = () => {
-      authClose();
-      cartClose();
+      auth.close();
+      cart.close();
     }
   });
 
   // Disable scrolling of the body while authForm or cart is open.
-  if (authState.show || cartState.show) {
+  if (auth.state.show || cart.state.show) {
     document.body.style.overflow = "hidden";
   } else {
     document.body.style.overflow = "visible";
@@ -61,15 +59,8 @@ export default function App() {
   );
 
   return (
-    <AuthContext.Provider
-      value={{ state: authState, open: authOpen, close: authClose }}
-    >
-      <CartContext.Provider 
-        value={{ 
-          state: cartState, open: cartOpen, close: cartClose, 
-          addItem, removeItem, completeOrder, clear 
-        }}
-      >
+    <AuthContext.Provider value={auth}>
+      <CartContext.Provider value={cart}>
         <BrowserRouter basename="/">
           <ScrollToTop />
           <AuthForm />
