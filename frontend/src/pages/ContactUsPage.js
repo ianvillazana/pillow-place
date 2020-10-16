@@ -32,7 +32,7 @@ export default function ContactUsPage() {
           onInput={() => {}}
         />
         <Input 
-          id="name"
+          id="contact-name"
           type="text"
           label="Name"
           validators={[VALIDATOR_REQUIRE()]}
@@ -40,7 +40,7 @@ export default function ContactUsPage() {
           onInput={() => {}}
         />
         <Input 
-          id="email"
+          id="contact-email"
           type="email"
           label="Email"
           validators={[VALIDATOR_EMAIL()]}

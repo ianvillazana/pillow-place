@@ -15,7 +15,7 @@ export default function CartItem(props) {
       </div>
       <div className={styles.quantity}>
         <button onClick={add}>+</button>
-        <div>{item.total}</div>
+        <div>{item.count}</div>
         <button onClick={remove}>-</button>
       </div>
     </div>

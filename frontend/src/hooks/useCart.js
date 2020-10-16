@@ -28,10 +28,10 @@ const cartReducer = (state, action) => {
           price: action.item.price,
           image: action.item.image,
           sku: action.item.sku,
-          total: 1
+          count: 1
         };
       } else {
-        newCart[action.item.sku].total += 1;
+        newCart[action.item.sku].count += 1;
       }
       return {
         ...state,
@@ -44,10 +44,10 @@ const cartReducer = (state, action) => {
     case "REMOVE_ITEM": {
       const newCart = {...state.items};
       const price = action.item.price;
-      if (action.item.total <= 1) {
+      if (action.item.count <= 1) {
         delete newCart[action.item.sku];
       } else {
-        newCart[action.item.sku].total -= 1;
+        newCart[action.item.sku].count -= 1;
       }
       return {
         ...state,
@@ -64,7 +64,6 @@ const cartReducer = (state, action) => {
     case "CLEAR":
       return {
         ...initialState,
-        orderComplete: state.orderComplete
       }
     default:
       return state;

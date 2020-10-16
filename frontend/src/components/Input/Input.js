@@ -56,6 +56,7 @@ export default function Input(props) {
       onChange={changeHandler}
       onBlur={touchHandler}
       value={inputState.value}
+      disabled={props.disabled}
     />
   ) : (
       <input
@@ -65,6 +66,7 @@ export default function Input(props) {
         onChange={changeHandler}
         onBlur={touchHandler}
         value={inputState.value}
+        disabled={props.disabled}
       />
     );
 

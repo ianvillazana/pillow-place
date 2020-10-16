@@ -25,17 +25,19 @@ const getOrderById = async (req, res, next) => {
 };
 
 const createOrder = async (req, res, next) => {
-  const { customer, dateTime, items, totalPrice } = req.body;
-  const createdOrder = new Order({ customer, dateTime, items, totalPrice });
+  const { customerId, dateTime, items, totalPrice } = req.body;
+  const createdOrder = new Order({ customerId, dateTime, items, totalPrice });
 
   // Check if customer id exists
   let user;
-  try {
-    user = await User.findById(customer);
-  } catch {
-    return next(new HttpError(
-      "Creating order failed. Could not find the user with the provided id.", 404
-    ));
+  if (customerId) {
+    try {
+      user = await User.findById(customerId);
+    } catch {
+      return next(new HttpError(
+        "Creating order failed. Could not find the user with the provided id.", 404
+      ));
+    }
   }
 
   // Create order in database and update user's order list
@@ -43,8 +45,10 @@ const createOrder = async (req, res, next) => {
     const sess = await mongoose.startSession();
     sess.startTransaction();
     await createdOrder.save({ session: sess });
-    user.orders.push(createdOrder);
-    await user.save({ session: sess });
+    if (customerId) {
+      user.orders.push(createdOrder);
+      await user.save({ session: sess });
+    }
     await sess.commitTransaction();
   } catch (error) {
     return next(new HttpError(error, 500));
@@ -77,7 +81,7 @@ const deleteOrder = async(req, res, next) => {
   // Get user
   let user;
   try {
-    user = await User.findById(order.customer);
+    user = await User.findById(order.customerId);
   } catch {
     return next(new HttpError(
       "Deleting order failed. Could not find the user with the provided id.", 404

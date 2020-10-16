@@ -1,39 +1,104 @@
-import React, { Fragment, useContext } from 'react';
+import React, { Fragment, useContext, useEffect, useState } from 'react';
+import { useHistory } from 'react-router-dom';
 
+import Input from '../components/Input/Input';
+import Modal from '../components/Modal/Modal';
+import Spinner from '../components/Spinner/Spinner';
+import Button from '../components/Button/Button';
+import WideButton from '../components/WideButton/WideButton';
 import { AuthContext } from '../context/auth-context';
 import { CartContext } from '../context/cart-context';
-import Input from '../components/Input/Input';
-import WideButton from '../components/WideButton/WideButton';
+import { useHttpClient } from '../hooks/useHttpClient';
+import getDateTime from '../utils/getDateTime';
 import { VALIDATOR_EMAIL, VALIDATOR_REQUIRE } from '../utils/validators';
 import styles from './CheckoutPage.module.css';
 
 export default function CheckoutPage() {
   const auth = useContext(AuthContext);
   const cart = useContext(CartContext);
+  const { isLoading, sendRequest, error, clearError } = useHttpClient();
+  const [showModal, setShowModal] = useState(false);
+  const history = useHistory();
 
-  const { ...items } = cart.state.items
+  useEffect(() => {
+    if (isLoading) {
+      setShowModal(true);
+    }
+  }, [isLoading]);
 
-  const submitHandler = (event) => {
+  const submitHandler = async (event) => {
     event.preventDefault();
-    
+
+    let itemsArray = [];
+    for (let item of Object.keys(cart.state.items)) {
+      itemsArray.push(cart.state.items[item]);
+    }
+
+    try {
+      await sendRequest(
+        'http://localhost:5000/api/orders',
+        'POST',
+        JSON.stringify({
+          customerId: auth.state.user.id,
+          dateTime: getDateTime(),
+          items: itemsArray,
+          totalPrice: cart.state.priceTotal
+        }),
+        { 'Content-Type': 'application/json'}
+      );
+      cart.completeOrder(true);
+    } catch {}
   }
+
+  const editOrder = (event) => {
+    event.preventDefault();
+    cart.open();
+  }
+
+  const closeModal = () => {
+    if (!isLoading) {
+      setShowModal(false);
+      clearError();
+      if (cart.state.orderComplete) {
+        cart.clear();
+        history.push("/");
+      }
+    }
+  }
+
+  const { ...items } = cart.state.items;
 
   const checkout = (
     <Fragment>
+      <Modal show={showModal} onCancel={closeModal}>
+        {isLoading ? <Spinner /> : (
+          <Fragment>
+            <div>
+              {error 
+                ? "Something went wrong. Please try again." 
+                : "Order completed."
+              }
+            </div>
+            <Button large onClick={closeModal}>OK</Button>
+          </Fragment>
+        )}
+      </Modal>
       <h2>{auth.state.isLoggedIn ? "User" : "Guest"} Checkout</h2>
       <form className={styles.form} onSubmit={submitHandler}>
         <section className={styles.section}>
           <h5>Shipping Address</h5>
-          <Input
-            id="name"
-            type="text"
-            label="Name"
-            validators={[VALIDATOR_REQUIRE()]}
-            errorText="Please enter your name."
-            initialValue="Firstname Lastname"
-            initialValid={true}
-            onInput={() => {}}
-          />
+          {auth.state.isLoggedIn ? <div><h6>Name</h6> {auth.state.user.name}</div> : (
+            <Input
+              id="checkout-name"
+              type="text"
+              label="Name"
+              validators={[VALIDATOR_REQUIRE()]}
+              errorText="Please enter your name."
+              initialValue="Firstname Lastname"
+              initialValid={true}
+              onInput={() => {}}
+            />
+          )}
           <Input
             id="address"
             type="text"
@@ -88,17 +153,19 @@ export default function CheckoutPage() {
               onInput={() => {}}
             />
           </div>
-          <Input
-            id="email"
-            type="email"
-            label="Email"
-            validators={[VALIDATOR_EMAIL()]}
-            errorText="Please enter a valid email."
-            initialValue="customer@mail.zzz"
-            initialValid={true}
-            onInput={() => {}}
-          />
-          {!auth.isLoggedIn && (
+          {auth.state.isLoggedIn ? <div><h6>Email</h6> {auth.state.user.email}</div> : (
+            <Input
+              id="checkout-email"
+              type="email"
+              label="Email"
+              validators={[VALIDATOR_EMAIL()]}
+              errorText="Please enter a valid email."
+              initialValue="customer@mail.zzz"
+              initialValid={true}
+              onInput={() => {}}
+            />
+          )}
+          {!auth.state.isLoggedIn && (
             <div onClick={auth.open} className={styles.openAuth}>
               Already have an account? Log in here!
             </div>
@@ -180,7 +247,7 @@ export default function CheckoutPage() {
             <div>Total</div>
             <div><strong>${cart.state.priceTotal}</strong></div>
           </div>
-          <WideButton onClick={cart.open}>EDIT ORDER</WideButton>
+          <WideButton onClick={editOrder}>EDIT ORDER</WideButton>
           <WideButton type="submit">PLACE ORDER</WideButton>
         </section>
       </form>
