@@ -1,4 +1,4 @@
-import React, { Fragment, useContext, useEffect, useState } from 'react';
+import React, { Fragment, useContext, useEffect, useState, useRef } from 'react';
 import { useHistory } from 'react-router-dom';
 
 import Input from '../components/Input/Input';
@@ -18,6 +18,7 @@ export default function CheckoutPage() {
   const cart = useContext(CartContext);
   const { isLoading, sendRequest, error, clearError } = useHttpClient();
   const [showModal, setShowModal] = useState(false);
+  const orderId = useRef("");
   const history = useHistory();
 
   useEffect(() => {
@@ -35,7 +36,7 @@ export default function CheckoutPage() {
     }
 
     try {
-      await sendRequest(
+      const responseData = await sendRequest(
         'http://localhost:5000/api/orders',
         'POST',
         JSON.stringify({
@@ -46,6 +47,7 @@ export default function CheckoutPage() {
         }),
         { 'Content-Type': 'application/json'}
       );
+      orderId.current = responseData.order.id;
       cart.completeOrder(true);
     } catch {}
   }
@@ -76,7 +78,7 @@ export default function CheckoutPage() {
             <div>
               {error 
                 ? "Something went wrong. Please try again." 
-                : "Order completed."
+                : `Order completed. Order ID: ${orderId.current}`
               }
             </div>
             <Button large onClick={closeModal}>OK</Button>
@@ -235,7 +237,7 @@ export default function CheckoutPage() {
                 </div>
               </div>
               <div>
-                {items[item].total} &times; {items[item].price}
+                {items[item].count} &times; {items[item].price}
               </div>
             </div>
           ))}

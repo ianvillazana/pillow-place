@@ -6,6 +6,7 @@ import AuthForm from './components/AuthForm/AuthForm';
 import Cart from './components/Cart/Cart';
 import Header from './components/Header/Header';
 import HomePage from './pages/HomePage';
+import AccountPage from './pages/AccountPage';
 import ContactUsPage from './pages/ContactUsPage';
 import FaqPage from './pages/FaqPage';
 import ReturnPolicyPage from './pages/ReturnPolicyPage';
@@ -13,6 +14,7 @@ import ShippingPage from './pages/ShippingPage';
 import ShopPage from './pages/ShopPage';
 import ProductPage from './pages/ProductPage';
 import CheckoutPage from './pages/CheckoutPage';
+import NotFoundPage from './pages/NotFoundPage';
 import Footer from './components/Footer/Footer';
 import { AuthContext } from './context/auth-context';
 import { CartContext } from './context/cart-context';
@@ -41,6 +43,9 @@ export default function App() {
 
   const routes = (
     <Switch>
+      {auth.state.isLoggedIn && (
+        <Route path="/account" exact component={AccountPage} />
+      )}
       <Route path="/contact-us" exact component={ContactUsPage} />
       <Route path="/faq" exact component={FaqPage} />
       <Route path="/return-policy" exact component={ReturnPolicyPage} />
@@ -54,7 +59,7 @@ export default function App() {
       <Route path="/checkout" exact component={CheckoutPage} />
       <Route path="/home" exact component={HomePage} />
       <Route path="/" exact component={HomePage} />
-      <Route component={HomePage} />
+      <Route component={NotFoundPage} />
     </Switch>
   );
 

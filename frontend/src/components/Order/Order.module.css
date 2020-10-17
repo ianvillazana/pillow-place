@@ -1,0 +1,40 @@
+.order {
+  display: flex;
+  flex-direction: column;
+  margin: 3.75rem 0;
+  max-width: 60rem;
+  width: 100%;
+}
+
+.order h5 {
+  margin-bottom: 1rem;
+}
+
+.order h6 {
+  letter-spacing: normal;
+  margin-bottom: 3rem;
+}
+
+.order button {
+  background-color: #fff;
+  border-color: var(--red);
+  color: var(--red);
+}
+
+.order button:hover {
+  background-color: var(--red);
+  color: #fff;
+}
+
+.item {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 1.5rem;
+}
+
+.itemSKU {
+  color: rgba(0,0,0,0.7);
+}
+
+

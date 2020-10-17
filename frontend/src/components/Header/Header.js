@@ -1,5 +1,5 @@
 import React, { Fragment, useContext, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 
 import IconButton from '../../components/IconButton/IconButton';
 import Menu from '../../components/Menu/Menu';
@@ -14,6 +14,7 @@ export default function Header() {
   const auth = useContext(AuthContext);
   const cart = useContext(CartContext);
   const [menuIsOpen, setMenuIsOpen] = useState(false);
+  const history = useHistory();
 
   const openMenu = () => {
     cart.close();
@@ -43,7 +44,7 @@ export default function Header() {
             </Fragment>
           ) : (
             <Fragment>
-              <button onClick={() => {}}>MY ACCOUNT</button>
+              <button onClick={() => history.push("/account")}>MY ACCOUNT</button>
               <p>•</p>
               <button onClick={() => auth.logout()}>LOG OUT</button>
             </Fragment>

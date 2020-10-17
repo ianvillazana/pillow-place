@@ -3,6 +3,7 @@ h1 {
   font-weight: normal;
   letter-spacing: 1px;
   margin-bottom: 1.5rem;
+  text-align: center;
 }
 
 h2 {
@@ -10,6 +11,7 @@ h2 {
   font-weight: normal;
   letter-spacing: 0.5px;
   margin-bottom: 3rem;
+  text-align: center;
   text-transform: uppercase;
 }
 
