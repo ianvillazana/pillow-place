@@ -4,7 +4,7 @@ import WideButton from '../WideButton/WideButton';
 import styles from './Order.module.css';
 
 export default function Order(props) {
-  const { order } = props;
+  const { order, onClick } = props;
 
   return (
     <div className={styles.order}>
@@ -31,7 +31,7 @@ export default function Order(props) {
         <div>Total</div>
         <div><strong>${order.totalPrice}</strong></div>
       </div>
-      <WideButton>Cancel Order</WideButton>
+      <WideButton onClick={() => onClick(order.id)}>Cancel Order</WideButton>
     </div>
   );
 }

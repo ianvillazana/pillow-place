@@ -16,6 +16,10 @@
   white-space: nowrap;
 }
 
+.button:active {
+  transform: scale(0.99);
+}
+
 .button:focus {
   outline: none;
 }

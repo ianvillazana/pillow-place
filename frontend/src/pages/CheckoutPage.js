@@ -1,10 +1,10 @@
 import React, { Fragment, useContext, useEffect, useState, useRef } from 'react';
 import { useHistory } from 'react-router-dom';
 
+import Button from '../components/Button/Button';
 import Input from '../components/Input/Input';
 import Modal from '../components/Modal/Modal';
 import Spinner from '../components/Spinner/Spinner';
-import Button from '../components/Button/Button';
 import WideButton from '../components/WideButton/WideButton';
 import { AuthContext } from '../context/auth-context';
 import { CartContext } from '../context/cart-context';
@@ -63,7 +63,7 @@ export default function CheckoutPage() {
       clearError();
       if (cart.state.orderComplete) {
         cart.clear();
-        history.push("/");
+        auth.state.isLoggedIn ? history.push("/account") : history.push("/")
       }
     }
   }

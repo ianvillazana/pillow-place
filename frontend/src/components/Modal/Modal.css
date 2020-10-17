@@ -1,21 +1,21 @@
 .modal {
-  display: flex;
-  flex-direction: column;
   align-items: center;
-  justify-content: center;
   background: white;
   border: 1px solid #000;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  font-size: 1.6rem;
+  gap: 2rem;
+  height: 25rem;
+  justify-content: center;
   left: 10%;
+  padding: 0 1rem;
   position: fixed;
+  text-align: center;
   top: calc(50% - 12.5rem);
   width: 80%;
   z-index: 100;
-  gap: 2rem;
-  font-size: 1.6rem;
-  height: 25rem;
-  box-sizing: border-box;
-  padding: 0 1rem;
-  text-align: center;
 }
 
 @media (min-width: 28em) {
