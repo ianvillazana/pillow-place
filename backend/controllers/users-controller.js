@@ -1,6 +1,5 @@
 const { validationResult } = require('express-validator');
 const bcrypt = require('bcryptjs');
-const jwt = require('jsonwebtoken');
 
 const HttpError = require('../models/http-error');
 const User = require('../models/user');
@@ -64,23 +63,12 @@ const signup = async (req, res, next) => {
     return next(new HttpError(error.message, 500));
   }
 
-  // Create token that expires in 1hr
-  let token;
-  try {
-    token = jwt.sign({
-      id: createdUser.id, email: createdUser.email, name: createdUser.name
-    }, 'private_key', { expiresIn: '1h' });
-  } catch (error) {
-    return next(new HttpError(error.message, 500));
-  }
-
   res.status(201).json({ 
     message: "New user created successfully.",
     user: { 
       id: createdUser.id, 
       email: createdUser.email, 
-      name: createdUser.name,
-      token: token
+      name: createdUser.name
     }
   });
 };
@@ -115,22 +103,12 @@ const login = async (req, res, next) => {
     ));
   }
 
-  let token;
-  try {
-    token = jwt.sign({
-      id: existingUser.id, email: existingUser.email, name: existingUser.name
-    }, 'private_key', { expiresIn: '1h' });
-  } catch (error) {
-    return next(new HttpError(error.message, 500));
-  }
-
   res.status(202).json({ 
     message: "Login accepted.", 
     user: {
       id: existingUser.id,
       email: existingUser.email,
-      name: existingUser.name,
-      token: token
+      name: existingUser.name
     }
   });
 };

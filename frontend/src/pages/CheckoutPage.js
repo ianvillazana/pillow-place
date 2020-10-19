@@ -45,7 +45,7 @@ export default function CheckoutPage() {
           items: itemsArray,
           totalPrice: cart.state.priceTotal
         }),
-        { 'Content-Type': 'application/json'}
+        { 'Content-Type': 'application/json' }
       );
       orderId.current = responseData.order.id;
       cart.completeOrder(true);
