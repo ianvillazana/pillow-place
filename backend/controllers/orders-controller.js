@@ -51,7 +51,7 @@ const createOrder = async (req, res, next) => {
     }
     await sess.commitTransaction();
   } catch (error) {
-    return next(new HttpError(error, 500));
+    return next(new HttpError(error.message, 500));
   }
   
   res.status(201).json({
@@ -103,7 +103,7 @@ const deleteOrder = async(req, res, next) => {
     await user.save({ session: sess });
     await sess.commitTransaction();
   } catch (error) {
-    return next(new HttpError(error, 500));
+    return next(new HttpError(error.message, 500));
   }
 
   res.status(200).json({ message: "Order deleted." });
