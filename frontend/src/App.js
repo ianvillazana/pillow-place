@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, Suspense } from 'react';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 
 import ScrollToTop from './components/ScrollToTop/ScrollToTop';
@@ -6,21 +6,24 @@ import AuthForm from './components/AuthForm/AuthForm';
 import Cart from './components/Cart/Cart';
 import Header from './components/Header/Header';
 import HomePage from './pages/HomePage';
-import AccountPage from './pages/AccountPage';
-import ContactUsPage from './pages/ContactUsPage';
-import FaqPage from './pages/FaqPage';
-import ReturnPolicyPage from './pages/ReturnPolicyPage';
-import ShippingPage from './pages/ShippingPage';
-import ShopPage from './pages/ShopPage';
-import ProductPage from './pages/ProductPage';
-import CheckoutPage from './pages/CheckoutPage';
-import NotFoundPage from './pages/NotFoundPage';
 import Footer from './components/Footer/Footer';
+import Spinner from './components/Spinner/Spinner';
 import { AuthContext } from './context/auth-context';
 import { CartContext } from './context/cart-context';
 import { useAuth } from './hooks/useAuth';
 import { useCart } from './hooks/useCart';
 import './App.css';
+
+// Lazy loading routes
+const AccountPage = React.lazy(() => import('./pages/AccountPage'));
+const CheckoutPage = React.lazy(() => import('./pages/CheckoutPage'));
+const ContactUsPage = React.lazy(() => import('./pages/ContactUsPage'));
+const FaqPage = React.lazy(() => import('./pages/FaqPage'));
+const NotFoundPage = React.lazy(() => import('./pages/NotFoundPage'));
+const ProductPage = React.lazy(() => import('./pages/ProductPage'));
+const ReturnPolicyPage = React.lazy(() => import('./pages/ReturnPolicyPage'));
+const ShippingPage = React.lazy(() => import('./pages/ShippingPage'));
+const ShopPage = React.lazy(() => import('./pages/ShopPage'));
 
 export default function App() {
   const auth = useAuth();
@@ -71,7 +74,11 @@ export default function App() {
           <AuthForm />
           <Cart />
           <Header />
-          <main>{routes}</main>
+          <main>
+            <Suspense fallback={<div className="page"><Spinner /></div>}>
+              {routes}
+            </Suspense>
+          </main>
           <Footer />
         </BrowserRouter>
       </CartContext.Provider>

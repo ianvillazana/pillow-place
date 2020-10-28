@@ -15,6 +15,8 @@ import {
 import styles from './AuthForm.module.css';
 import './AuthFormAnimation.css';
 
+const API_URL = process.env.REACT_APP_BACKEND_URL || 'http://localhost:5000';
+
 function Overlay(props) {
   const { auth } = props;
   const { isLoading, error, sendRequest, clearError } = useHttpClient();
@@ -42,7 +44,7 @@ function Overlay(props) {
     if (auth.state.isLogin) {
       try {
         const responseData = await sendRequest(
-          'http://localhost:5000/api/users/login',
+          `${API_URL}/api/users/login`,
           'POST',
           JSON.stringify({
             email: formState.inputs.email.value,
@@ -59,7 +61,7 @@ function Overlay(props) {
     } else {
       try {
         const responseData = await sendRequest(
-          'http://localhost:5000/api/users/signup',
+          `${API_URL}/api/users/signup`,
           'POST',
           JSON.stringify({
             name: formState.inputs.name.value,

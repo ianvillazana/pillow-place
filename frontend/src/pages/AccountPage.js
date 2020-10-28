@@ -7,6 +7,8 @@ import Spinner from '../components/Spinner/Spinner';
 import { AuthContext } from '../context/auth-context';
 import { useHttpClient } from '../hooks/useHttpClient';
 
+const API_URL = process.env.REACT_APP_BACKEND_URL || 'http://localhost:5000';
+
 export default function AccountPage() {
   const auth = useContext(AuthContext);
   const { sendRequest } = useHttpClient();
@@ -19,13 +21,13 @@ export default function AccountPage() {
     const getOrders = async () => {
       try {
         const userData = await sendRequest(
-          `http://localhost:5000/api/users/orders/${auth.state.user.id}`
+          `${API_URL}/api/users/orders/${auth.state.user.id}`
         );
         let ordersArray = [];
         for (let oid of userData.orders) {
           try {
             const orderData = await sendRequest(
-              `http://localhost:5000/api/orders/${oid}`
+              `${API_URL}/api/orders/${oid}`
             );
             ordersArray.push(orderData.order);
           } catch {}
@@ -42,7 +44,7 @@ export default function AccountPage() {
   const deleteOrder = async (oid) => {
     setIsLoading(true);
     try {
-      await sendRequest(`http://localhost:5000/api/orders/${oid}`, 'DELETE');
+      await sendRequest(`${API_URL}/api/orders/${oid}`, 'DELETE');
       setOrders(orders.filter(order => order.id !== oid));
       setIsLoading(false);
       setShowModal(true);

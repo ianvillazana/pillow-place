@@ -13,6 +13,8 @@ import getDateTime from '../utils/getDateTime';
 import { VALIDATOR_EMAIL, VALIDATOR_REQUIRE } from '../utils/validators';
 import styles from './CheckoutPage.module.css';
 
+const API_URL = process.env.REACT_APP_BACKEND_URL || 'http://localhost:5000';
+
 export default function CheckoutPage() {
   const auth = useContext(AuthContext);
   const cart = useContext(CartContext);
@@ -37,7 +39,7 @@ export default function CheckoutPage() {
 
     try {
       const responseData = await sendRequest(
-        'http://localhost:5000/api/orders',
+        `${API_URL}/api/orders`,
         'POST',
         JSON.stringify({
           customerId: auth.state.user.id,
