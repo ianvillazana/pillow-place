@@ -9,12 +9,12 @@ E-commerce shop that sells pillows for all sleeper types.
 This is not a real website and there are no actual products being sold.
 
 If you decide to test this project using the 
-[live website](ijv-pillow-place.netlify.app), please note that user and order 
-data is saved to the database. An account is not needed in order to make a fake 
-purchase. If you create an account, please use a fake email and throwaway 
-password. If you order something, address and credit card input is not read or 
-saved - only the items in the cart. You can leave the dummy data on the purchase 
-form as is.
+[live website](https://ijv-pillow-place.netlify.app/), please note that user 
+and order data is saved to the database. An account is not needed in order to 
+make a fake purchase. If you create an account, please use a fake email and 
+throwaway password. If you order something, address and credit card input is 
+not read or saved - only the items in the cart. You can leave the dummy data 
+on the purchase form as is.
 
 ## Installation and Setup
 
