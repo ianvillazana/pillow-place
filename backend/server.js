@@ -1,6 +1,7 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const helmet = require('helmet');
+const cors = require('cors');
 const mongoose = require('mongoose');
 
 const errors = require('./middleware/errors');
@@ -14,16 +15,7 @@ server.use(bodyParser.json());
 
 server.use(helmet());
 
-// Handles browser CORS policy
-server.use((req, res, next) => {
-  res.setHeader('Access-Control-Allow-Origin', '*');
-  res.setHeader(
-    'Access-Control-Allow-Headers', 
-    'Origin, X-Requested-With, Content-Type, Accept, Authorization'
-  );
-  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, DELETE');
-  next();
-});
+server.use(cors());
 
 server.use('/api/orders', ordersRoutes);
 

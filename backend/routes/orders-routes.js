@@ -4,9 +4,13 @@ const ordersController = require('../controllers/orders-controller');
 
 const router = express.Router();
 
-router.post('/', ordersController.createOrder);
+router.get('/', ordersController.getAllOrders);
 
 router.get('/:oid', ordersController.getOrderById);
+
+router.get('/user/:uid', ordersController.getUserOrdersById);
+
+router.post('/', ordersController.createOrder);
 
 router.delete('/:oid', ordersController.deleteOrder);
 

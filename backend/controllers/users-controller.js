@@ -4,25 +4,20 @@ const bcrypt = require('bcryptjs');
 const HttpError = require('../models/http-error');
 const User = require('../models/user');
 
-const getUserOrdersById = async (req, res, next) => {
-  const userId = req.params.uid;
-  
-  let user;
+const getAllUsers = async (req, res, next) => {
+  let users;
   try {
-    user = await User.findById(userId);
-  } catch {
-    return next(new HttpError("Could not find a user for the provided id.", 404));
+    users = await User.find({}, "-password");
+  } catch (error) {
+    return next(new HttpError(error.message, 500));
   }
 
-  if (!user) {
-    return next(new HttpError("Could not find a user for the provided id.", 404));
+  if (!users) {
+    return next(new HttpError("Could not find any users.", 404));
   }
 
-  res.status(200).json({
-    message: "Orders for user was found.", 
-    orders: user.orders 
-  });
-}
+  res.status(200).json({ message: "Users found.", users });
+};
 
 const signup = async (req, res, next) => {
   // Input error checking using express-validator
@@ -113,6 +108,4 @@ const login = async (req, res, next) => {
   });
 };
 
-exports.getUserOrdersById = getUserOrdersById;
-exports.signup = signup;
-exports.login = login;
+module.exports = { getAllUsers, signup, login };

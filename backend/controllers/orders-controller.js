@@ -4,13 +4,28 @@ const HttpError = require('../models/http-error');
 const Order = require('../models/order');
 const User = require('../models/user');
 
+const getAllOrders = async (req, res, next) => {
+  let orders;
+  try {
+    orders = await Order.find({});
+  } catch {
+    return next(new HttpError("Could not find any orders.", 404));
+  }
+
+  if (!orders || orders.length < 1) {
+    return next(new HttpError("Could not find any orders.", 404));
+  }
+
+  res.status(200).json({ message: "Orders found.", orders });
+};
+
 const getOrderById = async (req, res, next) => {
   const orderId = req.params.oid;
 
   let order;
   try {
     order = await Order.findById(orderId);
-  } catch (error) {
+  } catch {
     return next(new HttpError("Could not find an order for the provided id.", 404));
   }
 
@@ -21,6 +36,30 @@ const getOrderById = async (req, res, next) => {
   res.status(200).json({ 
     message: "Order found.",
     order: order.toObject({ getters: true }) 
+  });
+};
+
+const getUserOrdersById = async (req, res, next) => {
+  const userId = req.params.uid;
+  
+  let user;
+  try {
+    user = await User.findById(userId);
+  } catch {
+    return next(new HttpError("Could not find a user for the provided id.", 404));
+  }
+
+  if (!user) {
+    return next(new HttpError("Could not find a user for the provided id.", 404));
+  }
+
+  if (!user.orders || user.orders.length < 1) {
+    return next(new HttpError("Could not find any orders for the user.", 404));
+  }
+
+  res.status(200).json({
+    message: "Found orders for user.", 
+    orders: user.orders 
   });
 };
 
@@ -84,13 +123,13 @@ const deleteOrder = async(req, res, next) => {
     user = await User.findById(order.customerId);
   } catch {
     return next(new HttpError(
-      "Deleting order failed. Could not find the user with the provided id.", 404
+      "Deleting order failed. Could not find a user with the provided id.", 404
     ));
   }
 
   if (!user) {
     return next(new HttpError(
-      "Deleting order failed. Could not find the user with the provided id.", 404
+      "Deleting order failed. Could not find a user with the provided id.", 404
     ));
   }
 
@@ -109,6 +148,6 @@ const deleteOrder = async(req, res, next) => {
   res.status(200).json({ message: "Order deleted." });
 };
 
-exports.getOrderById = getOrderById;
-exports.createOrder = createOrder;
-exports.deleteOrder = deleteOrder;
+module.exports = { 
+  getAllOrders, getOrderById, getUserOrdersById, createOrder, deleteOrder 
+};

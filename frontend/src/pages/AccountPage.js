@@ -21,7 +21,7 @@ export default function AccountPage() {
     const getOrders = async () => {
       try {
         const userData = await sendRequest(
-          `${API_URL}/api/users/orders/${auth.state.user.id}`
+          `${API_URL}/api/orders/user/${auth.state.user.id}`
         );
         let ordersArray = [];
         for (let oid of userData.orders) {
