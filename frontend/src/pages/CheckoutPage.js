@@ -37,9 +37,17 @@ export default function CheckoutPage() {
       itemsArray.push(cart.state.items[item]);
     }
 
+    // Set up route endpoint and CORS header for if user is logged in
+    let endpoint = "guest";
+    let header = { "Content-Type": 'application/json' };
+    if (auth.state.token) {
+      header.Authorization =  `Bearer ${auth.state.token}`;
+      endpoint = "user";
+    }
+      
     try {
       const responseData = await sendRequest(
-        `${API_URL}/api/orders`,
+        `${API_URL}/api/orders/${endpoint}`,
         'POST',
         JSON.stringify({
           customerId: auth.state.user.id,
@@ -47,7 +55,7 @@ export default function CheckoutPage() {
           items: itemsArray,
           totalPrice: cart.state.priceTotal
         }),
-        { 'Content-Type': 'application/json' }
+        header
       );
       orderId.current = responseData.order.id;
       cart.completeOrder(true);
@@ -65,7 +73,7 @@ export default function CheckoutPage() {
       clearError();
       if (cart.state.orderComplete) {
         cart.clear();
-        auth.state.isLoggedIn ? history.push("/account") : history.push("/")
+        auth.state.token ? history.push("/account") : history.push("/")
       }
     }
   }
@@ -87,11 +95,11 @@ export default function CheckoutPage() {
           </Fragment>
         )}
       </Modal>
-      <h2>{auth.state.isLoggedIn ? "User" : "Guest"} Checkout</h2>
+      <h2>{auth.state.token ? "User" : "Guest"} Checkout</h2>
       <form className={styles.form} onSubmit={submitHandler}>
         <section className={styles.section}>
           <h5>Shipping Address</h5>
-          {auth.state.isLoggedIn ? <div><h6>Name</h6> {auth.state.user.name}</div> : (
+          {auth.state.token ? <div><h6>Name</h6> {auth.state.user.name}</div> : (
             <Input
               id="checkout-name"
               type="text"
@@ -157,7 +165,7 @@ export default function CheckoutPage() {
               onInput={() => {}}
             />
           </div>
-          {auth.state.isLoggedIn ? <div><h6>Email</h6> {auth.state.user.email}</div> : (
+          {auth.state.token ? <div><h6>Email</h6> {auth.state.user.email}</div> : (
             <Input
               id="checkout-email"
               type="email"
@@ -169,7 +177,7 @@ export default function CheckoutPage() {
               onInput={() => {}}
             />
           )}
-          {!auth.state.isLoggedIn && (
+          {!auth.state.token && (
             <div onClick={auth.open} className={styles.openAuth}>
               Already have an account? Log in here!
             </div>

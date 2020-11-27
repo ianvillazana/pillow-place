@@ -3,8 +3,8 @@ import { useReducer } from 'react';
 const initialState = {
   show: false,
   isLogin: true,
-  isLoggedIn: false, 
-  user: { id: null, email: null, name: null }
+  user: { id: null, email: null, name: null },
+  token: null
 }
 
 const authReducer = (state, action) => {
@@ -25,8 +25,8 @@ const authReducer = (state, action) => {
       return {
         ...state,
         show: false,
-        isLoggedIn: true,
-        user: { id: action.id, email: action.email, name: action.name }
+        user: { id: action.id, email: action.email, name: action.name },
+        token: action.token
       }
     case "LOGOUT":
       return {
@@ -48,8 +48,8 @@ export const useAuth = () => {
     dispatch({ type: "CLOSE" });
   };
 
-  const login = (id, email, name) => {
-    dispatch({ type: "LOGIN", id, email, name });
+  const login = (id, email, name, token) => {
+    dispatch({ type: "LOGIN", id, email, name, token });
   };
 
   const logout = () => {

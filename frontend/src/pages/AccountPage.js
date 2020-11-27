@@ -11,13 +11,11 @@ const API_URL = process.env.REACT_APP_BACKEND_URL || 'http://localhost:5000';
 
 export default function AccountPage() {
   const auth = useContext(AuthContext);
-  const { sendRequest } = useHttpClient();
-  const [isLoading, setIsLoading] = useState(false);
+  const { isLoading, sendRequest, error, clearError } = useHttpClient();
   const [showModal, setShowModal] = useState(false);
   const [orders, setOrders] = useState([]);
 
   useEffect(() => {
-    setIsLoading(true);
     const getOrders = async () => {
       try {
         const userData = await sendRequest(
@@ -33,30 +31,42 @@ export default function AccountPage() {
           } catch {}
         }
         setOrders(ordersArray);
-        setIsLoading(false);
-      } catch {
-        setIsLoading(false);
-      }
+      } catch {}
     };
     getOrders();
   }, [auth.state.user.id, sendRequest]);
 
   const deleteOrder = async (oid) => {
-    setIsLoading(true);
     try {
-      await sendRequest(`${API_URL}/api/orders/${oid}`, 'DELETE');
+      await sendRequest(
+        `${API_URL}/api/orders/${oid}`, 
+        'DELETE', 
+        null,
+        {  
+          "Content-Type": 'application/json',
+          Authorization: `Bearer ${auth.state.token}` 
+        }
+      );
       setOrders(orders.filter(order => order.id !== oid));
-      setIsLoading(false);
       setShowModal(true);
     } catch {
-      setIsLoading(false);
+      setShowModal(true);
+    }
+  };
+
+  const closeModal = () => {
+    if (!isLoading) {
+      setShowModal(false);
+      clearError();
     }
   };
 
   return (
     <div className="page">
-      <Modal show={showModal} onCancel={() => setShowModal(false)}>
-        <div>Order cancelled.</div>
+      <Modal show={showModal} onCancel={closeModal}>
+        <div>
+          {error ? "Unable to delete order." : "Order cancelled."}
+        </div>
         <Button large onClick={() => setShowModal(false)}>OK</Button>
       </Modal>
       <h2>Order History for {auth.state.user.name}</h2>

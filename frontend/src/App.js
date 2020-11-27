@@ -46,7 +46,7 @@ export default function App() {
 
   const routes = (
     <Switch>
-      {auth.state.isLoggedIn && (
+      {auth.state.token && (
         <Route path="/account" exact component={AccountPage} />
       )}
       <Route path="/contact-us" exact component={ContactUsPage} />

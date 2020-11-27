@@ -36,7 +36,7 @@ export default function Header() {
       {menuIsOpen && <Menu onClick={() => setMenuIsOpen(false)} />}
       <div className={styles.top}>
         <div className={styles.options}>
-          {!auth.state.isLoggedIn ? (
+          {!auth.state.token ? (
             <Fragment>
               <button onClick={() => auth.open(false)}>CREATE ACCOUNT</button>
               <p>•</p>

@@ -55,7 +55,8 @@ function Overlay(props) {
         auth.login(
           responseData.user.id, 
           responseData.user.email, 
-          responseData.user.name
+          responseData.user.name,
+          responseData.token
         );
       } catch {}
     } else {
@@ -73,7 +74,8 @@ function Overlay(props) {
         auth.login(
           responseData.user.id, 
           responseData.user.email, 
-          responseData.user.name
+          responseData.user.name,
+          responseData.token
         );
       } catch {}
     }

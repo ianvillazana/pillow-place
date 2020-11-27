@@ -16,7 +16,11 @@ const getAllOrders = async (req, res, next) => {
     return next(new HttpError("Could not find any orders.", 404));
   }
 
-  res.status(200).json({ message: "Orders found.", orders });
+  res.status(200).json({ 
+    message: "Orders found.", 
+    count: orders.length, 
+    orders 
+  });
 };
 
 const getOrderById = async (req, res, next) => {
@@ -67,6 +71,11 @@ const createOrder = async (req, res, next) => {
   const { customerId, dateTime, items, totalPrice } = req.body;
   const createdOrder = new Order({ customerId, dateTime, items, totalPrice });
 
+  // Check if user id stored in token matches the customer id
+  if (customerId && (req.userData.userId !== customerId.toString())) {
+    return next(new HttpError("You are not authorized.", 401));
+  }
+
   // Check if customer id exists
   let user;
   if (customerId) {
@@ -115,6 +124,11 @@ const deleteOrder = async(req, res, next) => {
     return next(new HttpError(
       "Deleting order failed. Could not find an order for the provided id.", 404
     ));
+  }
+
+  // Check if user id stored in token matches the customer id of the order
+  if (req.userData.userId !== order.customerId.toString()) {
+    return next(new HttpError("You are not authorized.", 401));
   }
 
   // Get user
