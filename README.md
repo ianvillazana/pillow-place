@@ -52,6 +52,7 @@ Backend
 * [Express.js](https://expressjs.com/)
 * [MongoDB](https://www.mongodb.com/)
 * [Mongoose](https://mongoosejs.com/)
+* [jsonwebtoken](https://www.npmjs.com/package/jsonwebtoken)
 
 ## Key Features
 
@@ -61,6 +62,10 @@ checks are made on both client side and server side
 * Passwords are hashed so that they are not visible in the database
 * An account page that shows order history is accessible only to logged in users
 * Both guests and registered users can make purchases
+* Token authorization to ensure that only the correct registered user can make a
+purchase or cancel their orders
+* If the user had not previously logged out, the user will remain logged in
+until the authorization token expires
 
 ## Motivation
 
@@ -69,8 +74,7 @@ Material-UI and instead used regular CSS and came up with my own designs for
 pages and components. I also removed Google Firebase for the backend and 
 developed my own using Node.js, Express, MongoDB, and Mongoose. Redux was
 removed as well in favor of React's useContext hook. Overall, I believe that
-this final version looks much better and is far more impressive in terms of 
-coding.
+this iteration looks much better and is far more impressive in terms of coding.
 
 ## Author
 
