@@ -11,18 +11,14 @@ const getAllUsers = async (req, res, next) => {
   try {
     users = await User.find({}, "-password");
   } catch (error) {
-    return next(new HttpError(error.message, 500));
+    return next(new HttpError("Could not retrieve users.", 404));
   }
 
   if (!users) {
-    return next(new HttpError("Could not find any users.", 404));
+    return next(new HttpError("Could not retrieve users.", 404));
   }
 
-  res.status(200).json({ 
-    message: "Users found.", 
-    count: users.length,
-    users 
-  });
+  res.status(200).json({ count: users.length, users });
 };
 
 const signup = async (req, res, next) => {

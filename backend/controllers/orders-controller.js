@@ -9,18 +9,14 @@ const getAllOrders = async (req, res, next) => {
   try {
     orders = await Order.find({});
   } catch {
-    return next(new HttpError("Could not find any orders.", 404));
+    return next(new HttpError("Unable to retrieve orders.", 404));
   }
 
-  if (!orders || orders.length < 1) {
-    return next(new HttpError("Could not find any orders.", 404));
+  if (!orders) {
+    return next(new HttpError("Unable to retrieve orders.", 404));
   }
 
-  res.status(200).json({ 
-    message: "Orders found.", 
-    count: orders.length, 
-    orders 
-  });
+  res.status(200).json({ count: orders.length, orders });
 };
 
 const getOrderById = async (req, res, next) => {
@@ -57,14 +53,11 @@ const getUserOrdersById = async (req, res, next) => {
     return next(new HttpError("Could not find a user for the provided id.", 404));
   }
 
-  if (!user.orders || user.orders.length < 1) {
-    return next(new HttpError("Could not find any orders for the user.", 404));
+  if (!user.orders) {
+    return next(new HttpError("Could not get orders for user.", 404));
   }
 
-  res.status(200).json({
-    message: "Found orders for user.", 
-    orders: user.orders 
-  });
+  res.status(200).json({ count: user.orders.length, orders: user.orders });
 };
 
 const createOrder = async (req, res, next) => {
@@ -103,7 +96,7 @@ const createOrder = async (req, res, next) => {
   }
   
   res.status(201).json({
-    message: "Order created successfully", 
+    message: "Order created successfully.", 
     order: createdOrder.toObject({ getters: true }) 
   });
 };

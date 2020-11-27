@@ -48,11 +48,19 @@ export const useAuth = () => {
     dispatch({ type: "CLOSE" });
   };
 
-  const login = (id, email, name, token) => {
+  const login = (id, email, name, token, expiration=null) => {
+    if (!expiration) {
+      // Token expires in 1hr
+      const tokenExpiration = new Date(new Date().getTime() + 1000 * 60 * 60);
+      localStorage.setItem("userData", JSON.stringify({ 
+        id, email, name, token, expiration: tokenExpiration.toISOString()
+      }));
+    }
     dispatch({ type: "LOGIN", id, email, name, token });
   };
 
   const logout = () => {
+    localStorage.removeItem("userData");
     dispatch({ type: "LOGOUT" });
   };
 

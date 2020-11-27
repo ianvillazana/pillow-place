@@ -27,7 +27,7 @@ const ShopPage = React.lazy(() => import('./pages/ShopPage'));
 
 export default function App() {
   const auth = useAuth();
-  const cart = useCart();
+  const cart = useCart(); 
 
   // Close authForm and cart when browser back button is pressed.
   useEffect(() => {
@@ -36,6 +36,22 @@ export default function App() {
       cart.close();
     }
   });
+
+  // Check if user has already logged in when app renders for the first time
+  // Automatically log user out if token has expired
+  useEffect(() => {
+    if (!auth.state.token) {
+      const storedData = JSON.parse(localStorage.getItem("userData"));
+      if (storedData && storedData.token && storedData.expiration) {
+        if (new Date(storedData.expiration) > new Date()) {
+          const { id, email, name, token, expiration } = storedData;
+          auth.login(id, email, name, token, expiration);
+        } else {
+          auth.logout();
+        }
+      }
+    }
+  }, [auth]);
 
   // Disable scrolling of the body while authForm or cart is open.
   if (auth.state.show || cart.state.show) {
