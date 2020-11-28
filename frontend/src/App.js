@@ -1,5 +1,5 @@
 import React, { useEffect, Suspense } from 'react';
-import { BrowserRouter, Switch, Route } from 'react-router-dom';
+import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom';
 
 import ScrollToTop from './components/ScrollToTop/ScrollToTop';
 import AuthForm from './components/AuthForm/AuthForm';
@@ -62,9 +62,9 @@ export default function App() {
 
   const routes = (
     <Switch>
-      {auth.state.token && (
-        <Route path="/account" exact component={AccountPage} />
-      )}
+      <Route path="/account" exact>
+        {auth.state.token ? <AccountPage /> : <Redirect to="/" />}
+      </Route>
       <Route path="/contact-us" exact component={ContactUsPage} />
       <Route path="/faq" exact component={FaqPage} />
       <Route path="/return-policy" exact component={ReturnPolicyPage} />
@@ -78,7 +78,8 @@ export default function App() {
       <Route path="/checkout" exact component={CheckoutPage} />
       <Route path="/home" exact component={HomePage} />
       <Route path="/" exact component={HomePage} />
-      <Route component={NotFoundPage} />
+      <Route path="/404" exact component={NotFoundPage} />
+      <Route><Redirect to="404" /></Route>
     </Switch>
   );
 
