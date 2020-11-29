@@ -37,11 +37,11 @@ export default function CheckoutPage() {
       itemsArray.push(cart.state.items[item]);
     }
 
-    // Set up route endpoint and CORS header for if user is logged in
+    // Set up route endpoint and CORS header if a user is logged in
     let endpoint = "guest";
-    let header = { "Content-Type": 'application/json' };
+    let header = { "Content-Type": "application/json" };
     if (auth.state.token) {
-      header.Authorization =  `Bearer ${auth.state.token}`;
+      header.Authorization = `Bearer ${auth.state.token}`;
       endpoint = "user";
     }
       

@@ -19,7 +19,13 @@ export default function AccountPage() {
     const getOrders = async () => {
       try {
         const userData = await sendRequest(
-          `${API_URL}/api/orders/user/${auth.state.user.id}`
+          `${API_URL}/api/orders/user/${auth.state.user.id}`,
+          'GET',
+          null,
+          {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${auth.state.token}`
+          }
         );
         let ordersArray = [];
         for (let oid of userData.orders) {
@@ -34,7 +40,7 @@ export default function AccountPage() {
       } catch {}
     };
     getOrders();
-  }, [auth.state.user.id, sendRequest]);
+  }, [auth.state.user.id, auth.state.token, sendRequest]);
 
   const deleteOrder = async (oid) => {
     try {
