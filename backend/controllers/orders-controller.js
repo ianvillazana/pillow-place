@@ -41,6 +41,11 @@ const getOrderById = async (req, res, next) => {
 
 const getUserOrdersById = async (req, res, next) => {
   const userId = req.params.uid;
+
+  // Check if user id stored in token matches the customer id
+  if (req.userData.userId !== userId.toString()) {
+    return next(new HttpError("You are not authorized.", 401));
+  }
   
   let user;
   try {

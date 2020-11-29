@@ -9,12 +9,12 @@ router.get('/', ordersController.getAllOrders);
 
 router.get('/:oid', ordersController.getOrderById);
 
-router.get('/user/:uid', ordersController.getUserOrdersById);
-
 router.post('/guest', ordersController.createOrder);
 
 // Routes after this middleware are protected and require a token
 router.use(checkAuth);
+
+router.get('/user/:uid', ordersController.getUserOrdersById);
 
 router.post('/user', ordersController.createOrder);
 
