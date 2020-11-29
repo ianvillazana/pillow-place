@@ -10,8 +10,8 @@ import { AuthContext } from '../../context/auth-context';
 import { useForm } from '../../hooks/useForm';
 import { useHttpClient } from '../../hooks/useHttpClient';
 import { 
-  VALIDATOR_REQUIRE, VALIDATOR_EMAIL, VALIDATOR_MINLENGTH } 
-  from '../../utils/validators';
+  VALIDATOR_REQUIRE, VALIDATOR_EMAIL, VALIDATOR_MINLENGTH 
+} from '../../utils/validators';
 import styles from './AuthForm.module.css';
 import './AuthFormAnimation.css';
 
@@ -27,14 +27,20 @@ function Overlay(props) {
   }, false);
 
   const switchHandler = () => {
-    if (auth.state.isLogin) {
-      setFormData({ ...formState.inputs, name: undefined }, false);
-      clearError();
-      auth.open(false);
-    } else {
-      setFormData({ ...formState.inputs, name: { value: "", isValid: false } });
+    if (!auth.state.isLogin) {
+      setFormData({ 
+        ...formState.inputs, 
+        name: undefined 
+      }, formState.inputs.email.isValid && formState.inputs.password.isValid);
       clearError();
       auth.open(true);
+    } else {
+      setFormData({ 
+        ...formState.inputs, 
+        name: { value: "", isValid: false } 
+      }, false);
+      clearError();
+      auth.open(false);
     }
   };
 
