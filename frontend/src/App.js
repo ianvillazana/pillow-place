@@ -76,9 +76,9 @@ export default function App() {
       <Route path="/shop" exact render={() => <ShopPage tabValue={3} />} />
       <Route path="/shop/products/:id" exact component={ProductPage} />
       <Route path="/checkout" exact component={CheckoutPage} />
+      <Route path="/404" exact component={NotFoundPage} />
       <Route path="/home" exact component={HomePage} />
       <Route path="/" exact component={HomePage} />
-      <Route path="/404" exact component={NotFoundPage} />
       <Route><Redirect to="404" /></Route>
     </Switch>
   );
