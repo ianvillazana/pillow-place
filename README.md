@@ -69,12 +69,21 @@ until the authorization token expires
 
 ## Motivation
 
-This project is a remake of a [previous one](https://github.com/ianvillazana/pillow-place-old). I was not satisfied with how it looked, so I ditched 
-Material-UI and instead used regular CSS and came up with my own designs for 
-pages and components. I also removed Google Firebase for the backend and 
-developed my own using Node.js, Express, MongoDB, and Mongoose. Redux was
-removed as well in favor of React's useContext hook. Overall, I believe that
-this iteration looks much better and is far more impressive in terms of coding.
+This project is a remake of a [previous one](https://github.com/ianvillazana/pillow-place-old). 
+I was not satisfied with how it looked, so I ditched Material-UI and instead 
+used regular CSS and came up with my own design implementation for pages and 
+components. I also removed Google Firebase for the backend and developed my own 
+using Node.js, Express, MongoDB, and Mongoose. Redux was removed as well in 
+favor of React's useContext hook, which has the advantage of already being 
+included out of the box and having less setup. Overall, I believe that this 
+iteration looks much better and is far more impressive in terms of coding.
+
+## Acknowledgements
+
+General design ideas are inspired by [The Pillow Shoppe](https://thepillowshoppe.ca/) 
+and [Ridge Wallet](https://ridgewallet.ca/) online shops.
+
+Pillow images and data are taken from [Sleep Country Canada](https://www.sleepcountry.ca/).
 
 ## Author
 
